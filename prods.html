@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MMZ - Prods</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="search.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">MMZ</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+    </header>
+    <div class="wrapper">
+        <nav>
+            <ul>
+                <li><a href="base.html">Home</a></li>
+                <li><a href="music.html">Music</a></li>
+                <li><a href="policy.html">Policy</a></li>
+                <li><a href="promo.html">Promo</a></li>
+                <li><a href="prods.html">Prods</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h1>PRODUCEREK</h1>
+            <div class="prods-grid">
+                <div class="prod-card" data-prod="MMZ">
+                    <div class="prod-avatar"><i class="fas fa-user"></i></div>
+                    <h3 class="prod-name">MMZ</h3>
+                    <p class="prod-desc">Synthwave / Cyberpunk producer – az MMZ alapító tagja</p>
+                    <button class="prod-ticket-btn">Ticket írása</button>
+                </div>
+                
+                <div class="prod-card" data-prod="SHADXW">
+                    <div class="prod-avatar"><i class="fas fa-user"></i></div>
+                    <h3 class="prod-name">SHADXW</h3>
+                    <p class="prod-desc">Dark synth & atmospheric beats</p>
+                    <button class="prod-ticket-btn">Ticket írása</button>
+                </div>
+                
+                <div class="prod-card" data-prod="NEURA">
+                    <div class="prod-avatar"><i class="fas fa-user"></i></div>
+                    <h3 class="prod-name">NEURA</h3>
+                    <p class="prod-desc">Futuristic electronic & neurofunk elemek</p>
+                    <button class="prod-ticket-btn">Ticket írása</button>
+                </div>
+                
+                <div class="prod-card" data-prod="VØLT">
+                    <div class="prod-avatar"><i class="fas fa-user"></i></div>
+                    <h3 class="prod-name">VØLT</h3>
+                    <p class="prod-desc">High-energy synthwave collaborator</p>
+                    <button class="prod-ticket-btn">Ticket írása</button>
+                </div>
+                
+                <div class="prod-card" data-prod="KRYPTON">
+                    <div class="prod-avatar"><i class="fas fa-user"></i></div>
+                    <h3 class="prod-name">KRYPTON</h3>
+                    <p class="prod-desc">Heavy bass & dystopian vibes</p>
+                    <button class="prod-ticket-btn">Ticket írása</button>
+                </div>
+            </div>
+            
+            <div class="ticket-modal" id="ticketModal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h2>Ticket írása <span id="selectedProd"></span> részére</h2>
+                    <form id="ticketForm">
+                        <label>Név *</label>
+                        <input type="text" required placeholder="A neved">
+                        
+                        <label>E-mail *</label>
+                        <input type="email" required placeholder="email@cim.hu">
+                        
+                        <label>Tárgy *</label>
+                        <input type="text" required placeholder="Pl. Együttműködés, kérdés...">
+                        
+                        <label>Üzenet *</label>
+                        <textarea rows="8" required placeholder="Írd ide az üzeneted..."></textarea>
+                        
+                        <button type="submit">Küldés</button>
+                    </form>
+                    <p class="form-note">Az üzenetet továbbítjuk a producernek. Válaszidő általában 3-7 nap.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="about-us">
+        <a href="aboutus.html">About Us</a>
+    </div>
+    <script src="ticket.js"></script>
+</body>
+</html>

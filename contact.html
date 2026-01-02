@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MMZ - Contact</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="search.js"></script>
+  <script src="contact.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">MMZ</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+    </div>
+  </header>
+  <div class="wrapper">
+    <nav>
+      <ul>
+        <li><a href="base.html">Home</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="policy.html">Policy</a></li>
+        <li><a href="promo.html">Promo</a></li>
+        <li><a href="prods.html">Prods</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h1>KAPCSOLAT</h1>
+      <div class="contact-container">
+        <div class="contact-info">
+          <h2>Írj nekünk bármilyen kérdésben</h2>
+          <p>Disztribúció, promóció, együttműködés, technikai probléma vagy csak egy köszönet – szívesen válaszolunk!</p>
+          
+          <div class="contact-links">
+            <a href="https://facebook.com/mmzdistro" target="_blank" class="contact-link">
+              <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://instagram.com/mmzdistro" target="_blank" class="contact-link">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="mailto:info@mmzdistro.com" class="contact-link email-link">
+              <i class="fas fa-envelope"></i> E-mail
+              <span class="email-tooltip">info@mmzdistro.com</span>
+            </a>
+            <a href="mailto:promo@mmzdistro.com" class="contact-link email-link">
+              <i class="fas fa-bullhorn"></i> Promo
+              <span class="email-tooltip">promo@mmzdistro.com</span>
+            </a>
+            <a href="mailto:legal@mmzdistro.com" class="contact-link email-link">
+              <i class="fas fa-gavel"></i> Jogi / Takedown
+              <span class="email-tooltip">legal@mmzdistro.com</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form-box">
+          <h2>Közvetlen üzenet</h2>
+          <form id="contactForm">
+            <label>Név *</label>
+            <input type="text" required placeholder="A neved">
+            
+            <label>E-mail *</label>
+            <input type="email" required placeholder="email@cim.hu">
+            
+            <label>Tárgy *</label>
+            <input type="text" required placeholder="Pl. Disztribúció, kérdés...">
+            
+            <label>Üzenet *</label>
+            <textarea rows="10" required placeholder="Írd ide az üzeneted..."></textarea>
+            
+            <button type="submit">Küldés</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="about-us">
+    <a href="aboutus.html">About Us</a>
+  </div>
+</body>
+</html>

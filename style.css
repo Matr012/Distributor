@@ -508,3 +508,245 @@ main h2 p {
   margin-bottom: 24px;
   text-align: left;
 }
+/*prods.html*/
+.prods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  width: 100%;
+  padding: 20px;
+}
+
+.prod-card {
+  background: rgba(0, 30, 0, 0.3);
+  border: 2px solid #0f0;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.prod-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 35px #0f0;
+}
+
+.prod-avatar {
+  font-size: 4rem;
+  color: #0f0;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px #0f0;
+}
+
+.prod-name {
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 10px #0f0;
+}
+
+.prod-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.prod-ticket-btn {
+  background: transparent;
+  border: 2px solid #0f0;
+  color: #0f0;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.4s;
+  text-shadow: 0 0 10px #0f0;
+}
+
+.prod-ticket-btn:hover {
+  background: #0f0;
+  color: #000;
+  box-shadow: 0 0 25px #0f0;
+}
+
+.ticket-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #000;
+  border: 3px solid #0f0;
+  padding: 40px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 0 40px #0f0;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
+  color: #0f0;
+  cursor: pointer;
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  text-shadow: 0 0 12px #0f0;
+}
+
+.modal-content label {
+  display: block;
+  margin: 20px 0 8px;
+  font-weight: bold;
+  text-shadow: 0 0 8px #0f0;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  background: transparent;
+  border: 2px solid #0f0;
+  color: #0f0;
+  padding: 12px;
+  font-size: 1rem;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.modal-content button {
+  width: 100%;
+  margin-top: 30px;
+  background: transparent;
+  border: 2px solid #0f0;
+  color: #0f0;
+  padding: 14px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.modal-content button:hover {
+  background: #0f0;
+  color: #000;
+  box-shadow: 0 0 30px #0f0;
+}
+
+.form-note {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/*contact.html*/
+.contact-container {
+  display: flex;
+  gap: 60px;
+  max-width: 1200px;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.contact-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+  text-shadow: 0 0 12px #0f0;
+}
+
+.contact-info p {
+  line-height: 1.8;
+  margin-bottom: 40px;
+  max-width: 500px;
+}
+
+.contact-form-box {
+  flex: 1;
+  min-width: 400px;
+  background: rgba(0, 30, 0, 0.3);
+  border: 3px solid #0f0;
+  padding: 40px;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
+}
+
+.contact-form-box h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+  text-shadow: 0 0 12px #0f0;
+}
+
+.contact-form-box label {
+  display: block;
+  margin: 20px 0 8px;
+  font-weight: bold;
+  text-shadow: 0 0 8px #0f0;
+}
+
+.contact-form-box input,
+.contact-form-box textarea {
+  width: 100%;
+  background: transparent;
+  border: 2px solid #0f0;
+  color: #0f0;
+  padding: 12px;
+  font-size: 1rem;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.contact-form-box button {
+  width: 100%;
+  margin-top: 30px;
+  background: transparent;
+  border: 2px solid #0f0;
+  color: #0f0;
+  padding: 14px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.contact-form-box button:hover {
+  background: #0f0;
+  color: #000;
+  box-shadow: 0 0 30px #0f0;
+}
+
+@media (max-width: 900px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact-form-box {
+    width: 90%;
+    max-width: 500px;
+  }
+}
