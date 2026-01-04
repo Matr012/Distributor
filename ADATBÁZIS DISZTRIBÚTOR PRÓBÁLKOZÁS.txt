@@ -1,0 +1,75 @@
+👤 USER (Login / Register) tábla
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+🔒 Jelszó: mindig hash-elve tárold (pl. password_hash() PHP-ban)
+
+
+
+🎤 ELŐADÓ (artists) tábla
+CREATE TABLE artists (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+📌 Az albumok és zenék nem itt vannak, hanem kapcsolaton keresztül.
+
+
+
+💿 ALBUM / SINGLE (albums) tábla
+CREATE TABLE albums (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    artist_id INT NOT NULL,
+    title VARCHAR(150) NOT NULL,
+    release_date DATE,
+    type ENUM('album', 'single') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (artist_id) REFERENCES artists(id)
+        ON DELETE CASCADE
+);
+
+
+
+🎵 ZENE (songs) tábla
+CREATE TABLE songs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    album_id INT NOT NULL,
+    title VARCHAR(150) NOT NULL,
+    release_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (album_id) REFERENCES albums(id)
+        ON DELETE CASCADE
+);
+
+
+📌 Így:
+
+Egy albumhoz több zene tartozik
+
+Single esetén az album egyetlen zenét tartalmaz
+
+
+
+
+
+INSERT INTO artists (name, email)
+VALUES ('Teszt Előadó', 'eloado@email.hu');
+
+INSERT INTO albums (artist_id, title, release_date, type)
+VALUES (1, 'Első Album', '2025-01-01', 'album');
+
+INSERT INTO songs (album_id, title, release_date)
+VALUES (1, 'Első Zene', '2025-01-01');
+
+
