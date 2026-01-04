@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MMZ - Regisztráció</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="search.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">MMZ</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+    </div>
+  </header>
+
+  <main class="auth-main">
+    <h1>REGISZTRÁCIÓ</h1>
+    <div class="contact-container auth-container">
+      <div class="contact-form-box">
+        <h2>Regisztráció</h2>
+        <form id="registerForm">
+          <label>Felhasználónév *</label>
+          <input type="text" id="username" required placeholder="Felhasználónév">
+          
+          <label>E-mail *</label>
+          <input type="email" id="email" required placeholder="email@cim.hu">
+          
+          <label>Jelszó *</label>
+          <input type="password" id="password" required placeholder="Jelszó">
+          
+          <button type="submit">Regisztráció</button>
+        </form>
+        <p class="auth-link">Már van fiókod? <a href="login.html">Bejelentkezés</a></p>
+      </div>
+    </div>
+  </main>
+
+  <div class="about-us">
+    <a href="aboutus.html">Rólunk</a>
+  </div>
+  <script src="register.js"></script>
+</body>
+</html>

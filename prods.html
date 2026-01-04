@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MMZ - Prods</title>
+  <title>MMZ - Előadók</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="search.js"></script>
@@ -12,85 +12,112 @@
     <header>
         <div class="logo">MMZ</div>
         <div class="search-bar">
-            <input type="text" placeholder="Search...">
+            <input type="text" placeholder="Keresés...">
         </div>
     </header>
     <div class="wrapper">
         <nav>
             <ul>
-                <li><a href="base.html">Home</a></li>
-                <li><a href="music.html">Music</a></li>
-                <li><a href="policy.html">Policy</a></li>
-                <li><a href="promo.html">Promo</a></li>
-                <li><a href="prods.html">Prods</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="base.html">Kezdőlap</a></li>
+                <li><a href="music.html">Zenék</a></li>
+                <li><a href="policy.html">ÁSZF</a></li>
+                <li><a href="promo.html">Promóció</a></li>
+                <li><a href="prods.html">Előadók</a></li>
+                <li><a href="contact.html">Kapcsolat</a></li>
             </ul>
         </nav>
         <main>
-            <h1>PRODUCEREK</h1>
-            <div class="prods-grid">
-                <div class="prod-card" data-prod="MMZ">
-                    <div class="prod-avatar"><i class="fas fa-user"></i></div>
-                    <h3 class="prod-name">MMZ</h3>
-                    <p class="prod-desc">Synthwave / Cyberpunk producer – az MMZ alapító tagja</p>
-                    <button class="prod-ticket-btn">Ticket írása</button>
-                </div>
-                
-                <div class="prod-card" data-prod="SHADXW">
-                    <div class="prod-avatar"><i class="fas fa-user"></i></div>
-                    <h3 class="prod-name">SHADXW</h3>
-                    <p class="prod-desc">Dark synth & atmospheric beats</p>
-                    <button class="prod-ticket-btn">Ticket írása</button>
-                </div>
-                
-                <div class="prod-card" data-prod="NEURA">
-                    <div class="prod-avatar"><i class="fas fa-user"></i></div>
-                    <h3 class="prod-name">NEURA</h3>
-                    <p class="prod-desc">Futuristic electronic & neurofunk elemek</p>
-                    <button class="prod-ticket-btn">Ticket írása</button>
-                </div>
-                
-                <div class="prod-card" data-prod="VØLT">
-                    <div class="prod-avatar"><i class="fas fa-user"></i></div>
-                    <h3 class="prod-name">VØLT</h3>
-                    <p class="prod-desc">High-energy synthwave collaborator</p>
-                    <button class="prod-ticket-btn">Ticket írása</button>
-                </div>
-                
-                <div class="prod-card" data-prod="KRYPTON">
-                    <div class="prod-avatar"><i class="fas fa-user"></i></div>
-                    <h3 class="prod-name">KRYPTON</h3>
-                    <p class="prod-desc">Heavy bass & dystopian vibes</p>
-                    <button class="prod-ticket-btn">Ticket írása</button>
-                </div>
-            </div>
-            
-            <div class="ticket-modal" id="ticketModal">
-                <div class="modal-content">
-                    <span class="close-modal">&times;</span>
-                    <h2>Ticket írása <span id="selectedProd"></span> részére</h2>
-                    <form id="ticketForm">
-                        <label>Név *</label>
-                        <input type="text" required placeholder="A neved">
-                        
-                        <label>E-mail *</label>
-                        <input type="email" required placeholder="email@cim.hu">
-                        
-                        <label>Tárgy *</label>
-                        <input type="text" required placeholder="Pl. Együttműködés, kérdés...">
-                        
-                        <label>Üzenet *</label>
-                        <textarea rows="8" required placeholder="Írd ide az üzeneted..."></textarea>
-                        
-                        <button type="submit">Küldés</button>
-                    </form>
-                    <p class="form-note">Az üzenetet továbbítjuk a producernek. Válaszidő általában 3-7 nap.</p>
-                </div>
-            </div>
-        </main>
+    <h1>ELŐADÓK</h1>
+    <div class="prods-grid">
+      <div class="prod-card" data-prod="Manuel"
+           data-spotify="#" data-soundcloud="#">
+        <div class="prod-avatar"><i class="fas fa-user"></i></div>
+        <h3 class="prod-name">Manuel</h3>
+        <p class="prod-desc">POP - TRAP</p>
+        
+        <div class="prod-social-icons">
+          <a href="https://open.spotify.com/artist/1O4dvMoyQSIClCii6DSai8?si=-pzUIVwOQICVLtPouG2Qhw" target="_blank" class="social-link spotify" title="Spotify"><i class="fab fa-spotify"></i></a>
+        </div>
+        
+        <button class="prod-ticket-btn">Fellépés szervezés/Booking</button>
+      </div>
+
+      <div class="prod-card" data-prod="Mehringer"
+           data-spotify="#" data-soundcloud="#">
+        <div class="prod-avatar"><i class="fas fa-user"></i></div>
+        <h3 class="prod-name">Mehringer</h3>
+        <p class="prod-desc">POP - ALTERNATÍV ROCK</p>
+        
+        <div class="prod-social-icons">
+          <a href="https://open.spotify.com/artist/2onsfuh37zW0OHB3lFa3t1?si=iGTnFx-NQZmF4joDbLOKhQ" target="_blank" class="social-link spotify" title="Spotify"><i class="fab fa-spotify"></i></a>
+          <a href="https://soundcloud.com/mehringer" target="_blank" class="social-link soundcloud" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
+        </div>
+        
+        <button class="prod-ticket-btn">Fellépés szervezés/Booking</button>
+      </div>
+
+      <div class="prod-card" data-prod="gyuris"
+           data-spotify="#" data-soundcloud="#">
+        <div class="prod-avatar"><i class="fas fa-user"></i></div>
+        <h3 class="prod-name">gyuris</h3>
+        <p class="prod-desc">TRAP</p>
+        <div class="prod-social-icons">
+          <a href="https://open.spotify.com/artist/19w3KViMCX0eq1UjNic2W9?si=03ym6eNXQrSDji2dDdGrYA" target="_blank" class="social-link spotify"><i class="fab fa-spotify"></i></a>
+          <a href="https://soundcloud.com/gyuris" target="_blank" class="social-link soundcloud"><i class="fab fa-soundcloud"></i></a>
+        </div>
+        <button class="prod-ticket-btn">Fellépés szervezés/Booking</button>
+      </div>
+
+      <div class="prod-card" data-prod="Mario"
+           data-spotify="#" data-soundcloud="#">
+        <div class="prod-avatar"><i class="fas fa-user"></i></div>
+        <h3 class="prod-name">Mario</h3>
+        <p class="prod-desc">R & B</p>
+        <div class="prod-social-icons">
+          <a href="https://open.spotify.com/artist/0Qld3F5Dr62sYbuivSzEMw?si=OtaRZJBmT8q3SaNzG06rKw" target="_blank" class="social-link spotify"><i class="fab fa-spotify"></i></a>
+        </div>
+        <button class="prod-ticket-btn">Fellépés szervezés/Booking</button>
+      </div>
+
+      <div class="prod-card" data-prod="AKC_Misi"
+           data-spotify="#" data-soundcloud="#">
+        <div class="prod-avatar"><i class="fas fa-user"></i></div>
+        <h3 class="prod-name">AKC Misi</h3>
+        <p class="prod-desc">TRAP</p>
+        <div class="prod-social-icons">
+          <a href="https://open.spotify.com/artist/4pWRro00gdnq90CwBmSCtv?si=3Ah6F8xIQ5SmPHZRKuemKQ" target="_blank" class="social-link spotify"><i class="fab fa-spotify"></i></a>
+          <a href="https://soundcloud.com/akc-misi" target="_blank" class="social-link soundcloud"><i class="fab fa-soundcloud"></i></a>
+        </div>
+        <button class="prod-ticket-btn">Fellépés szervezés/Booking</button>
+      </div>
+
+      <div class="prod-card" data-prod="matro"
+           data-spotify="#" data-soundcloud="#">
+        <div class="prod-avatar"><i class="fas fa-user"></i></div>
+        <h3 class="prod-name">matro</h3>
+        <p class="prod-desc">R & B - TRAP</p>
+        <div class="prod-social-icons">
+          <a href="https://open.spotify.com/artist/2CSvDdxgY0AaBzvxbLLhcK?si=N6nM1GH7SZi0Er26DyX4Zw" target="_blank" class="social-link spotify"><i class="fab fa-spotify"></i></a>
+          <a href="https://soundcloud.com/user-59601331" target="_blank" class="social-link soundcloud"><i class="fab fa-soundcloud"></i></a>
+        </div>
+        <button class="prod-ticket-btn">Fellépés szervezés/Booking</button>
+      </div>
+
+      <div class="prod-card" data-prod="BrunoXSpacc"
+           data-spotify="#" data-soundcloud="#">
+        <div class="prod-avatar"><i class="fas fa-user"></i></div>
+        <h3 class="prod-name">Bruno X Spacc</h3>
+        <p class="prod-desc">TRAP - POP - AFRO</p>
+        <div class="prod-social-icons">
+          <a href="https://open.spotify.com/artist/5ALUgNuS421MZrrrAhM9Bv?si=u4FCFq5BR7KgDhnU0JpN8Q" target="_blank" class="social-link spotify"><i class="fab fa-spotify"></i></a>
+        </div>
+        <button class="prod-ticket-btn">Fellépés szervezés/Booking</button>
+      </div>
+    </div>
+  </main>
     </div>
     <div class="about-us">
-        <a href="aboutus.html">About Us</a>
+        <a href="aboutus.html">Rólunk</a>
     </div>
     <script src="ticket.js"></script>
 </body>

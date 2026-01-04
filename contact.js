@@ -1,5 +1,5 @@
-document.getElementById('contactForm').addEventListener('submit', (e) => {
+document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
-        alert('Köszönjük az üzenetet! Hamarosan válaszolunk.');
+    alert('Köszönjük az üzenetet! Hamarosan válaszolunk.');
     e.target.reset();
-    });
+});
