@@ -82,7 +82,7 @@ namespace CegautokAPI.Controllers
         }
 
         [HttpPut("ModifyAlbum")]
-        public IActionResult PutUser(Album album)
+        public IActionResult PutAlbum(Album album)
         {
             using (var context = new MmzContext())
             {
