@@ -45,7 +45,7 @@ namespace MMZ
         {
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-            mail.From = new MailAddress("sumegiz@kkszki.hu");
+           
             mail.To.Add(mailAddressTo);
             mail.Subject = subject;
             mail.Body = body;
@@ -55,7 +55,7 @@ namespace MMZ
             mail.Attachments.Add(attachment);*/
 
             SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("sumegiz@kkszki.hu", "ssqk htqx kzcf rxad");
+            
             SmtpServer.EnableSsl = true;
 
             await SmtpServer.SendMailAsync(mail);
