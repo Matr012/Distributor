@@ -23,13 +23,14 @@ public partial class MmzContext : DbContext
 
     public virtual DbSet<MusicStyle> MusicStyles { get; set; }
 
-    public virtual DbSet<Subscription> Subscriptions { get; set; }
-
     public virtual DbSet<SubscriptionPlan> SubscriptionPlans { get; set; }
 
     public virtual DbSet<Track> Tracks { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<UserBilling> UserBillings { get; set; }
+    public virtual DbSet<UserCard > UserCards { get; set; }
+    public virtual DbSet<UserSubscription> UserSubscriptions { get; set; }
 
     /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
