@@ -1,17 +1,27 @@
-﻿namespace MMZ.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace MMZ.Models;
+
+public partial class UserSubscription
 {
-    public class UserSubscription
-    {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public int PlanId { get; set; }
-        public string? Status { get; set; }
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
-        public bool? AutoRenew { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public virtual SubscriptionPlan? Plan { get; set; }
-        public virtual User User { get; set; } = null!;
-    }
+    public int Id { get; set; }
+
+    public int UserId { get; set; }
+
+    public int PlanId { get; set; }
+
+    public int PriceAtPurchase { get; set; }
+
+    public string? Status { get; set; }
+
+    public DateTime StartDate { get; set; }
+
+    public DateTime? ExpiryDate { get; set; }
+
+    public bool? AutoRenew { get; set; }
+
+    public virtual SubscriptionPlan Plan { get; set; } = null!;
+
+    public virtual User User { get; set; } = null!;
 }

@@ -15,8 +15,6 @@ public partial class Album
 
     public string? CodeRequest { get; set; }
 
-    public string ArtistName { get; set; } = null!;
-
     public string Title { get; set; } = null!;
 
     public string? Subtitle { get; set; }
@@ -25,7 +23,7 @@ public partial class Album
 
     public DateTime? DigitalReleaseDate { get; set; }
 
-    public string Style { get; set; } = null!;
+    public int? StyleId { get; set; }
 
     public string? Redistribution { get; set; }
 
@@ -42,6 +40,8 @@ public partial class Album
     public DateTime UpdatedAt { get; set; }
 
     public virtual Artist? Artist { get; set; }
+
+    public virtual MusicStyle? Style { get; set; }
 
     public virtual ICollection<Track> Tracks { get; set; } = new List<Track>();
 

@@ -1,5 +1,4 @@
-﻿using MMZ.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace MMZ.Models;
@@ -34,8 +33,11 @@ public partial class User
 
     public virtual ICollection<Album> Albums { get; set; } = new List<Album>();
 
-    public virtual CardType CardType { get; set; } = null!;
+    public virtual Privilege PermissionNavigation { get; set; } = null!;
 
-    public virtual ICollection<UserSubscription> Subscriptions { get; set; } = new List<UserSubscription>();
-    
+    public virtual ICollection<UserBilling> UserBillings { get; set; } = new List<UserBilling>();
+
+    public virtual ICollection<UserCard> UserCards { get; set; } = new List<UserCard>();
+
+    public virtual ICollection<UserSubscription> UserSubscriptions { get; set; } = new List<UserSubscription>();
 }
