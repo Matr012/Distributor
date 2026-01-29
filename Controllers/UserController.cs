@@ -134,6 +134,6 @@ namespace CegautokAPI.Controllers
                     return BadRequest($"Hiba a törlés közben {ex.Message}");
                 }
             }
-        } 
+        }
     }
 }

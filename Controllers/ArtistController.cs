@@ -82,7 +82,7 @@ namespace CegautokAPI.Controllers
         }
 
         [HttpPut("ModifyArist")]
-        public IActionResult PutUser(Artist artist)
+        public IActionResult PutArtist(Artist artist)
         {
             using (var context = new MmzContext())
             {
@@ -129,6 +129,6 @@ namespace CegautokAPI.Controllers
                     return BadRequest($"Hiba a törlés közben {ex.Message}");
                 }
             }
-        } 
+        }
     }
 }
