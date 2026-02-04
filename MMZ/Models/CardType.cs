@@ -9,5 +9,5 @@ public partial class CardType
 
     public string CardName { get; set; } = null!;
 
-    public virtual ICollection<User> Users { get; set; } = new List<User>();
+    public virtual ICollection<UserCard> UserCards { get; set; } = new List<UserCard>();
 }

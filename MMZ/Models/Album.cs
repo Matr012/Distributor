@@ -46,4 +46,6 @@ public partial class Album
     public virtual ICollection<Track> Tracks { get; set; } = new List<Track>();
 
     public virtual User User { get; set; } = null!;
+    public virtual MusicStyle? MusicStyle { get; set; }
+    public int StyleId { get; internal set; }
 }

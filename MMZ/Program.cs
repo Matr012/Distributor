@@ -1,12 +1,13 @@
 
-using Microsoft.EntityFrameworkCore;
 using MMZ.Models;
-using System.Text.Json.Serialization;
+using FluentFTP;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MMZ.Models;
 using System.Configuration;
+using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
@@ -16,6 +17,26 @@ namespace MMZ
 {
     public class Program
     {
+        private static FtpSettings ftpSettings = new FtpSettings();
+        public static async Task<string> UploadToFtpServer(Stream fileStream, string fileName)
+        {
+            try
+            {
+                NetworkCredential credential = new NetworkCredential(ftpSettings.FtpUser, ftpSettings.FtpPass);
+                await using (AsyncFtpClient client = new AsyncFtpClient(ftpSettings.Host, credential))
+                {
+                    client.Config.DataConnectionType = FtpDataConnectionType.AutoPassive;
+                    await client.Connect();
+                    await client.UploadStream(fileStream, ftpSettings.SubFolder + fileName);
+                    return fileName;
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
         private static MailSettings mailSettings = new MailSettings();
         public static string GenerateSalt()
         {
@@ -28,6 +49,7 @@ namespace MMZ
             }
             return salt;
         }
+
         public static string CreateSHA256(string input)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -41,11 +63,11 @@ namespace MMZ
                 return sBuilder.ToString();
             }
         }
+
         public static async Task SendEmail(string mailAddressTo, string subject, string body)
         {
             MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-           
+            SmtpClient SmtpServer = new SmtpClient(mailSettings.SmtpServer);
             mail.To.Add(mailAddressTo);
             mail.Subject = subject;
             mail.Body = body;
@@ -55,12 +77,15 @@ namespace MMZ
             mail.Attachments.Add(attachment);*/
 
             SmtpServer.Port = 587;
-            
+
             SmtpServer.EnableSsl = true;
 
             await SmtpServer.SendMailAsync(mail);
 
         }
+
+
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -80,6 +105,10 @@ namespace MMZ
             //Mail settings
             builder.Configuration.GetSection("MailServices").Bind(mailSettings);
             builder.Services.AddSingleton(mailSettings);
+
+            //FTP settings
+            builder.Configuration.GetSection("FtpSettings").Bind(ftpSettings);
+            builder.Services.AddSingleton(ftpSettings);
 
             //JWT settings
             var jwtSettings = new Jwtsettings();
@@ -104,7 +133,9 @@ namespace MMZ
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey)),
                 };
             });
-            builder.Services.AddAuthorization();
+            builder.Services.AddAuthorization(options =>
+            options.AddPolicy("AdminOnly", policy => policy.RequireClaim("PrivilegeId","1","2","3")));
+            
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(opttions =>

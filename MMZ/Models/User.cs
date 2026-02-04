@@ -1,5 +1,4 @@
-﻿using MMZ.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace MMZ.Models;
@@ -14,29 +13,9 @@ public partial class User
 
     public string Username { get; set; } = null!;
 
-    public string? CardHolderName { get; set; }
-
     public string Email { get; set; } = null!;
 
     public string Phone { get; set; } = null!;
-
-    public string? BillingName { get; set; }
-
-    public string? BillingCountry { get; set; }
-
-    public string? BillingZip { get; set; }
-
-    public string? BillingCity { get; set; }
-
-    public string? BillingAddress { get; set; }
-
-    public int CardTypeId { get; set; }
-
-    public string? CardLast4 { get; set; }
-
-    public int? CardExpMonth { get; set; }
-
-    public int? CardExpYear { get; set; }
 
     public string PasswordHash { get; set; } = null!;
 
@@ -54,8 +33,11 @@ public partial class User
 
     public virtual ICollection<Album> Albums { get; set; } = new List<Album>();
 
-    public virtual CardType CardType { get; set; } = null!;
+    public virtual Privilege PermissionNavigation { get; set; } = null!;
 
-    public virtual ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
-    public virtual Privilege? PermissionNavigation { get; set; } = null!;
+    public virtual ICollection<UserBilling> UserBillings { get; set; } = new List<UserBilling>();
+
+    public virtual ICollection<UserCard> UserCards { get; set; } = new List<UserCard>();
+
+    public virtual ICollection<UserSubscription> UserSubscriptions { get; set; } = new List<UserSubscription>();
 }

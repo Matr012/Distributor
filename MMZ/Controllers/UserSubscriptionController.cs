@@ -6,24 +6,29 @@ namespace CegautokAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class ArtistController : ControllerBase
+    public class UserSubscriptionController : ControllerBase
     {
-        [HttpGet("Artists")]
-        public IActionResult GetArtists()
+        private readonly MmzContext _context;
+        public UserSubscriptionController(MmzContext context)
+        {
+            _context = context;
+        }
+        [HttpGet("UserSubscriptions")]
+        public IActionResult GetUserSubscriptions()
         {
             using (var context = new MmzContext())
             {
                 try
                 {
-                    List<Artist> albums = context.Artists.ToList();
-                    return Ok(albums);
+                    List<UserSubscription> usersubs = context.UserSubscriptions.ToList();
+                    return Ok(usersubs);
                 }
                 catch (Exception ex)
                 {
-                    List<Artist> valasz = new()
+                    List<UserSubscription> valasz = new()
                     {
-                        new Artist { Id = -1,
-                                   Name = "Hiba történt: "+ex.Message,
+                        new UserSubscription { Id = -1,
+                                   Status = "Hiba történt: "+ex.Message,
                         }
                     };
                     return BadRequest(valasz);
@@ -31,46 +36,46 @@ namespace CegautokAPI.Controllers
             }
         }
 
-        [HttpGet("ArtistById")]
-        public IActionResult GetArtistById(int id)
+        [HttpGet("UserSubscriptionById")]
+        public IActionResult GetUserSubscriptionById(int id)
         {
             using (var context = new MmzContext())
             {
                 try
                 {
-                    Artist eredmeny = context.Artists.FirstOrDefault(ar => ar.Id == id);
+                    UserSubscription eredmeny = context.UserSubscriptions.FirstOrDefault(us => us.Id == id);
                     if (eredmeny != null)
                         return Ok(eredmeny);
                     else
                     {
-                        Artist valasz = new Artist
+                        UserBilling valasz = new UserBilling
                         {
                             Id = -1,
-                            Name = "Hiba történt: nincs ilyen azonosítójú zenész!",
+                            BillingName = "Hiba történt: nincs ilyen azonosítójú felhasználó!",
                         };
                         return NotFound(valasz);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Artist valasz = new Artist
+                    UserBilling valasz = new UserBilling
                     {
                         Id = -1,
-                        Name = "Hiba történt: " + ex.Message,
+                        BillingName = "Hiba történt: " + ex.Message,
                     };
                     return BadRequest(valasz);
                 }
             }
         }
 
-        [HttpPost("NewArtist")]
-        public IActionResult PostArtist(Artist artist)
+        [HttpPost("NewUserSubscription")]
+        public IActionResult PostUserSubscription(UserSubscription userSubscription)
         {
             using (var context = new MmzContext())
             {
                 try
                 {
-                    context.Artists.Add(artist);
+                    context.UserSubscriptions.Add(userSubscription);
                     context.SaveChanges();
                     return Ok("Sikeres rögzítés");
                 }
@@ -81,22 +86,22 @@ namespace CegautokAPI.Controllers
             }
         }
 
-        [HttpPut("ModifyArist")]
-        public IActionResult PutArtist(Artist artist)
+        [HttpPut("ModifyUserSubscription")]
+        public IActionResult PutUser(UserSubscription userSubscription)
         {
             using (var context = new MmzContext())
             {
                 try
                 {
-                    if (context.Artists.Contains(artist))
+                    if (context.UserSubscriptions.Contains(userSubscription))
                     {
-                        context.Artists.Update(artist);
+                        context.UserSubscriptions.Update(userSubscription);
                         context.SaveChanges();
                         return Ok("Sikeres rögzítés");
                     }
                     else
                     {
-                        return NotFound("Nincs ilyen zenész!");
+                        return NotFound("Nincs ilyen felhasználó!");
                     }
                 }
                 catch (Exception ex)
@@ -106,22 +111,22 @@ namespace CegautokAPI.Controllers
             }
         }
 
-        [HttpDelete("DelArtist")]
-        public IActionResult DeleteArtist(int id)
+        [HttpDelete("DelUserSubscription")]
+        public IActionResult DeleteUserSubscription(int id)
         {
             using (var context = new MmzContext())
             {
                 try
                 {
-                    if (context.Artists.Select(ar => ar.Id).Contains(id))
+                    if (context.UserSubscriptions.Select(us => us.Id).Contains(id))
                     {
-                        context.Remove(new Artist { Id = id });
+                        context.Remove(new UserSubscription { Id = id });
                         context.SaveChanges();
                         return Ok("Sikeres törlés");
                     }
                     else
                     {
-                        return NotFound("Nincs ilyen zenész!");
+                        return NotFound("Nincs ilyen felhasználó!");
                     }
                 }
                 catch (Exception ex)

@@ -14,7 +14,7 @@ namespace CegautokAPI.Controllers
             _context = context;
         }
         [HttpGet("SubscriptionPlans")]
-        public IActionResult GetSubscriotion_Plans()
+        public IActionResult GetSubscription_Plans()
         {
             using (var context = new MmzContext())
             {

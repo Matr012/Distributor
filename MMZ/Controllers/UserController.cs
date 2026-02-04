@@ -1,6 +1,7 @@
 ﻿using MMZ.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CegautokAPI.Controllers
 {
@@ -13,6 +14,7 @@ namespace CegautokAPI.Controllers
         {
             _context = context;
         }
+        [Authorize(Policy = "StaffOnly")]
         [HttpGet("Users")]
         public IActionResult GetUsers()
         {
@@ -134,6 +136,6 @@ namespace CegautokAPI.Controllers
                     return BadRequest($"Hiba a törlés közben {ex.Message}");
                 }
             }
-        } 
+        }
     }
 }
