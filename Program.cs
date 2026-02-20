@@ -84,8 +84,6 @@ namespace MMZ
 
         }
 
-
-
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -95,6 +93,7 @@ namespace MMZ
             {
                 options.UseMySQL(builder.Configuration.GetConnectionString("MMZConnection"));
             });
+
 
             builder.Services.AddControllers();
             builder.Services.AddCors(c => { c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); });
@@ -133,7 +132,9 @@ namespace MMZ
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey)),
                 };
             });
-            builder.Services.AddAuthorization();
+            builder.Services.AddAuthorization(options =>
+            options.AddPolicy("admin", policy => policy.RequireClaim("PrivilegeId","1")));
+            
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(opttions =>

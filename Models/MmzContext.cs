@@ -129,8 +129,8 @@ public partial class MmzContext : DbContext
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("albums_ibfk_2");
 
-            entity.HasOne(d => d.Style).WithMany(p => p.Albums)
-                .HasForeignKey(d => d.StyleId)
+            entity.HasOne(d => d.MusicStyle).WithMany(p => p.Albums)
+                .HasForeignKey(d => d.Id)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("fk_albums_style");
 
@@ -492,7 +492,7 @@ public partial class MmzContext : DbContext
                 .HasColumnName("updated_at");
             entity.Property(e => e.UserId)
                 .HasColumnType("int(11)")
-                .HasColumnName("user_id");
+                .HasColumnName("user_id");  
 
             entity.HasOne(d => d.CardType).WithMany(p => p.UserCards)
                 .HasForeignKey(d => d.CardTypeId)
