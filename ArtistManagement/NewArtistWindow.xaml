@@ -1,0 +1,49 @@
+﻿<Window x:Class="MMZClient.ArtistManagement.NewArtistWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NewArtist" Height="520" Width="600" 
+        Background="Black" Foreground="Turquoise">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Row="0" Content="Name:" Foreground="Turquoise" Margin="0,8,0,4"/>
+        <TextBox x:Name="tbxName" Grid.Row="0" Margin="120,8,0,4" Height="26"/>
+
+        <Label Grid.Row="1" Content="Description:" Foreground="Turquoise" Margin="0,8,0,4"/>
+        <TextBox x:Name="tbxDescription" Grid.Row="1" Margin="120,8,0,4" Height="80" 
+                 VerticalScrollBarVisibility="Auto"/>
+
+        <Label Grid.Row="2" Content="Spotify URL:" Foreground="Turquoise" Margin="0,8,0,4"/>
+        <TextBox x:Name="tbxSpotifyUrl" Grid.Row="2" Margin="120,8,0,4" Height="26"/>
+
+        <Label Grid.Row="3" Content="Soundcloud URL:" Foreground="Turquoise" Margin="0,8,0,4"/>
+        <TextBox x:Name="tbxSoundcloudUrl" Grid.Row="3" Margin="120,8,0,4" Height="26"/>
+
+        <Label Grid.Row="4" Content="Other Socials:" Foreground="Turquoise" Margin="0,8,0,4"/>
+        <TextBox x:Name="tbxOtherSocials" Grid.Row="4" Margin="120,8,0,4" Height="26"/>
+
+        <Label Grid.Row="5" Content="Avatar / Image Path:" Foreground="Turquoise" Margin="0,8,0,4"/>
+        <TextBox x:Name="tbxAvatar" Grid.Row="5" Margin="120,8,0,4" Height="26"/>
+        <Grid Grid.Row="6" Height="10"/>
+        <StackPanel Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Save" Width="100" Margin="0,0,10,0" 
+                    Click="btnSave_Click" Foreground="Turquoise" Background="Black" 
+                    Padding="10,5"/>
+            <Button Content="Exit" Width="100" 
+                    Click="btnExit_Click" Foreground="Turquoise" Background="Black" 
+                    Padding="10,5"/>
+        </StackPanel>
+    </Grid>
+</Window>

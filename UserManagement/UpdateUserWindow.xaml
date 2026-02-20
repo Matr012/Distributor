@@ -1,0 +1,62 @@
+﻿<Window x:Class="MMZClient.UserManagement.UpdateUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Update User" Height="520" Width="800"
+        Background="Black" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="0,10,0,0">
+            <Label Content="User ID:" Foreground="Turquoise" FontWeight="SemiBold"/>
+            <TextBox x:Name="tbxUserId" Background="Black" Foreground="Turquoise" 
+                     IsReadOnly="True" IsEnabled="False"/>
+
+            <Label Content="First name:" Foreground="Turquoise"/>
+            <TextBox x:Name="tbxFName" Background="Black" Foreground="Turquoise"/>
+
+            <Label Content="Last name:" Foreground="Turquoise"/>
+            <TextBox x:Name="tbxLName" Background="Black" Foreground="Turquoise"/>
+
+            <Label Content="User name:" Foreground="Turquoise"/>
+            <TextBox x:Name="tbxLoginName" Background="Black" Foreground="Turquoise"/>
+
+            <Label Content="Email:" Foreground="Turquoise"/>
+            <TextBox x:Name="tbxEmail" Background="Black" Foreground="Turquoise"/>
+
+            <Label Content="Phone:" Foreground="Turquoise"/>
+            <TextBox x:Name="tbxPhone" Background="Black" Foreground="Turquoise"/>
+
+            <Label Content="New Password:" Foreground="Turquoise"/>
+            <PasswordBox x:Name="pwdPassword" Background="Black" Foreground="Turquoise"/>
+
+            <Label Content="Password Again" Foreground="Turquoise"/>
+            <PasswordBox x:Name="pwdPasswordAgain" Background="Black" Foreground="Turquoise"/>
+
+            <Label Content="Profile image file name:" Foreground="Turquoise"/>
+            <TextBox x:Name="tbxImage" Background="Black" Foreground="Turquoise"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,8">
+                <CheckBox x:Name="chbArtist" Content="Artist" Foreground="Turquoise" Margin="0,0,30,0"/>
+                <CheckBox x:Name="chbVerified" Content="Verified" Foreground="Turquoise"/>
+            </StackPanel>
+
+            <Label Content="Permission level:" Foreground="Turquoise"/>
+            <ComboBox x:Name="cbxPermission" Background="Black" Foreground="Turquoise"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center">
+            <Button x:Name="btnLoad" Content="Load User" Click="btnLoad_Click" Margin="5" Padding="12,6" 
+                    Background="Black" Foreground="Turquoise" BorderBrush="Turquoise"/>
+            <Button x:Name="btnSave" Content="Save Changes" Click="btnSave_Click" Margin="5" Padding="12,6" 
+                    Background="Black" Foreground="Turquoise" BorderBrush="Turquoise"/>
+            <Button x:Name="btnExit" Content="Close" Click="btnExit_Click" Margin="5" Padding="12,6" 
+                    Background="Black" Foreground="Turquoise" BorderBrush="Turquoise"/>
+        </StackPanel>
+    </Grid>
+</Window>

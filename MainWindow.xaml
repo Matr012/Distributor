@@ -1,0 +1,121 @@
+﻿<Window x:Class="CegautokKliens.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CegautokKliens"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="900" Background="Black">
+    <Window.Resources>
+        <Style TargetType="MenuItem">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Menu Height="40" 
+              Grid.ColumnSpan="2" 
+              Margin="2"
+              Padding="3"
+              VerticalAlignment="Top"
+              Background="Black"
+              Foreground="Turquoise">
+            <MenuItem Header="Login"
+                      Click="MenuLogin_Click"
+                      Name="itemLogin"
+                      Background="Black"
+                      Foreground="Turquoise"/>
+            <MenuItem Header="User Management">
+                <MenuItem Header="User List"
+                          Name="itemUserList"
+                          Click="itemUserList_Click"
+                          Background="Black"
+                          Foreground="Turquoise"/>
+                <MenuItem Header="New User"
+                          Name="itemNewUser"
+                          Click="itemNewUser_Click"
+                          Background="Black"
+                          Foreground="Turquoise"/>
+                <MenuItem Header="Update User"
+                          Name="itemUpdateUser"
+                          Click="itemUpdateUser_Click"
+                          Background="Black"
+                          Foreground="Turquoise"/>
+                <MenuItem Header="Delete User"
+                          Name="itemDeleteUser"
+                          Click="itemDeleteUser_Click"
+                          Background="Black"
+                          Foreground="Turquoise"/>
+            </MenuItem>
+            <MenuItem Header="Album Management">
+                <MenuItem Header="Album List"
+              Name="itemAlbumList"
+              Click="itemAlbumList_Click"
+              Background="Black"
+              Foreground="Turquoise"/>
+                <MenuItem Header="New Album"
+              Name="itemNewAlbum"
+              Click="itemNewAlbum_Click"
+              Background="Black"
+              Foreground="Turquoise"/>
+                <MenuItem Header="Update Album"
+              Name="itemUpdateAlbum"
+              Click="itemUpdateAlbum_Click"
+              Background="Black"
+              Foreground="Turquoise"/>
+                <MenuItem Header="Delete Album"
+              Name="itemDeleteAlbum"
+              Click="itemDeleteAlbum_Click"
+              Background="Black"
+              Foreground="Turquoise"/>
+            </MenuItem>
+            <MenuItem Header="Track Management">
+                <MenuItem Header="Track List"
+              Name="itemTrackList"
+              Click="itemTrackList_Click"
+              Background="Black"
+              Foreground="Turquoise"/>
+                <MenuItem Header="New Track"
+              Name="itemNewTrack"
+              Click="itemNewTrack_Click"
+              Background="Black"
+              Foreground="Turquoise"/>
+                <MenuItem Header="Update Track"
+              Name="itemUpdateTrack"
+              Click="itemUpdateTrack_Click"
+              Background="Black"
+              Foreground="Turquoise"/>
+                <MenuItem Header="Delete Track"
+              Name="itemDeleteTrack"
+              Click="itemDeleteTrack_Click"
+              Background="Black"
+              Foreground="Turquoise"/>
+            </MenuItem>
+            <MenuItem Header="Artist Management">
+                <MenuItem Header="Artist List"
+              Name="itemArtistList"
+              Click="itemArtistList_Click"
+              Background="Black"
+              Foreground="Turquoise"/>
+                <MenuItem Header="New Artist"
+              Name="itemNewArtist"
+              Click="itemNewArtist_Click"
+              Background="Black"
+              Foreground="Turquoise"/>
+                <MenuItem Header="Update Artist"
+              Name="itemUpdateArtist"
+              Click="itemUpdateArtist_Click"
+              Background="Black"
+              Foreground="Turquoise"/>
+                <MenuItem Header="Delete Artist"
+              Name="itemDeleteArtist"
+              Click="itemDeleteArtist_Click"
+              Background="Black"
+              Foreground="Turquoise"/>
+            </MenuItem>
+        </Menu>
+    </Grid>
+</Window>

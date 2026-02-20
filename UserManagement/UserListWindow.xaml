@@ -1,0 +1,36 @@
+﻿<Window x:Class="MMZClient.UserManagement.UserListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MMZClient.UserManagement"
+        mc:Ignorable="d"
+        Title="UserList" Height="450" Width="800" Background="Black">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="btnLoad"
+                    Content="Load Users"
+                    Click="btnLoad_Click"
+                    Margin="5"
+                    Padding="5"
+                    Foreground="Turquoise"
+                    Background="Black"/>
+
+            <Button x:Name="btnExit"
+                    Content="Exit"
+                    Click="btnExit_Click"
+                    Margin="5"
+                    Padding="5"
+                    Foreground="Turquoise"
+                    Background="Black"/>
+        </StackPanel>
+        <DataGrid x:Name="dgrUsers"
+                  Grid.Row="1"
+                  Background="Black"
+                  Foreground="Turquoise"/>
+    </Grid>
+</Window>

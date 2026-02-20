@@ -1,0 +1,42 @@
+﻿<Window x:Class="MMZClient.AlbumManagement.AlbumListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MMZClient.AlbumManagement"
+        mc:Ignorable="d"
+        Title="AlbumList" 
+        Height="500" 
+        Width="1100" 
+        Background="Black">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <Button x:Name="btnLoad"
+                    Content="Load Albums"
+                    Click="btnLoad_Click"
+                    Margin="5"
+                    Padding="10,5"
+                    Foreground="Turquoise"
+                    Background="Black"
+                    />
+            <Button x:Name="btnExit"
+                    Content="Exit"
+                    Click="btnExit_Click"
+                    Margin="5"
+                    Padding="10,5"
+                    Foreground="Turquoise"
+                    Background="Black"
+                   />
+        </StackPanel>
+        <DataGrid x:Name="dgrAlbums"
+                  Grid.Row="1"
+                  Background="Black"
+                  Foreground="Turquoise"
+                  IsReadOnly="True"/>
+
+    </Grid>
+</Window>
