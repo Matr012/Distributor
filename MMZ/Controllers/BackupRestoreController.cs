@@ -9,6 +9,7 @@ namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize("admin")]
     public class BackupRestoreController : ControllerBase
     {
         private readonly IWebHostEnvironment _env;

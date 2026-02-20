@@ -15,7 +15,7 @@ public partial class Album
 
     public string? CodeRequest { get; set; }
 
-    public string ArtistName { get; set; } = null!;
+    //public string ArtistName { get; set; } = null!;
 
     public string Title { get; set; } = null!;
 
@@ -25,7 +25,7 @@ public partial class Album
 
     public DateTime? DigitalReleaseDate { get; set; }
 
-    public string Style { get; set; } = null!;
+    //public string Style { get; set; } = null!;
 
     public string? Redistribution { get; set; }
 

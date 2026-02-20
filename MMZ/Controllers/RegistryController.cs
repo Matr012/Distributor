@@ -1,13 +1,15 @@
-﻿using MMZ.Models;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MMZ;
+using MMZ.Models;
 
 namespace CegautokAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    
     public class RegistryController : ControllerBase
     {
         private readonly MmzContext _context;
@@ -30,7 +32,7 @@ namespace CegautokAPI.Controllers
                     return BadRequest("Ez az email cím már használatban van.");
                 }
                 user.Verified = false;
-                user.Permission = 1;
+                user.Permission = 4;
                 user.PasswordHash = Program.CreateSHA256(user.PasswordHash);
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
@@ -52,7 +54,7 @@ namespace CegautokAPI.Controllers
                 if (user != null)
                 {
                     user.Verified = true;
-                    user.Permission = 2;
+                    user.Permission = 4;
                     _context.Users.Update(user);
                     await _context.SaveChangesAsync();
                     return Ok("Sikeres megerősítés.");

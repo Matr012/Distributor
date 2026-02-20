@@ -7,6 +7,7 @@ namespace CegautokAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize("admin")]
     public class UserController : ControllerBase
     {
         private readonly MmzContext _context;
@@ -14,7 +15,7 @@ namespace CegautokAPI.Controllers
         {
             _context = context;
         }
-        [Authorize(Policy = "StaffOnly")]
+        
         [HttpGet("Users")]
         public IActionResult GetUsers()
         {

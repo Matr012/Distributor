@@ -1,11 +1,13 @@
 ﻿using MMZ.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CegautokAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize("admin")]
     public class UserBillingController : ControllerBase
     {
         private readonly MmzContext _context;

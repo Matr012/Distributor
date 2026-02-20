@@ -1,11 +1,13 @@
-﻿using MMZ.Models;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MMZ.Models;
 
-namespace CegautokAPI.Controllers
+namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize("admin")]
     public class AlbumController : ControllerBase
     {
         [HttpGet("Albums")]
@@ -38,7 +40,7 @@ namespace CegautokAPI.Controllers
             {
                 try
                 {
-                    Album eredmeny = context.Albums.FirstOrDefault(x => x.Id == id);
+                    Album eredmeny = context.Albums.FirstOrDefault(ab => ab.Id == id);
                     if (eredmeny != null)
                         return Ok(eredmeny);
                     else
@@ -113,7 +115,7 @@ namespace CegautokAPI.Controllers
             {
                 try
                 {
-                    if (context.Albums.Select(a => a.Id).Contains(id))
+                    if (context.Albums.Select(ab => ab.Id).Contains(id))
                     {
                         context.Remove(new Album { Id = id });
                         context.SaveChanges();

@@ -1,11 +1,13 @@
-﻿using MMZ.Models;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MMZ.Models;
 
 namespace CegautokAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize("admin")]
     public class UserCardController : ControllerBase
     {
         private readonly MmzContext _context;
