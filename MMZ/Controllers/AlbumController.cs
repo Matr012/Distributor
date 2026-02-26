@@ -7,7 +7,7 @@ namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize("admin")]
+    [Authorize(Roles = "Admin")]
     public class AlbumController : ControllerBase
     {
         [HttpGet("Albums")]

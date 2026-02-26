@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 
-namespace CegautokAPI.Controllers
+namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize("admin")]
+    [Authorize(Roles = "Admin")]
     public class UserController : ControllerBase
     {
         private readonly MmzContext _context;

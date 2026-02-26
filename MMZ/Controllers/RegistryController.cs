@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using MMZ;
 using MMZ.Models;
 
-namespace CegautokAPI.Controllers
+namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]

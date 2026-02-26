@@ -132,8 +132,6 @@ namespace MMZ
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey)),
                 };
             });
-            builder.Services.AddAuthorization(options =>
-            options.AddPolicy("admin", policy => policy.RequireClaim("PrivilegeId","1")));
             
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
