@@ -7,7 +7,7 @@ namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    
     public class UserController : ControllerBase
     {
         private readonly MmzContext _context;
@@ -23,7 +23,15 @@ namespace MMZ.Controllers
             {
                 try
                 {
-                    List<User> users = context.Users.ToList();
+                    var users = context.Users.Select(u => new {
+                        u.Id,
+                        u.FirstName,
+                        u.LastName,
+                        u.Username,
+                        u.Email,
+                        u.Permission,
+                        u.ProfilePic
+                    }).ToList();
                     return Ok(users);
                 }
                 catch (Exception ex)
@@ -70,7 +78,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("NewUser")]
         public IActionResult PostUser(User user)
         {
@@ -88,7 +96,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("ModifyUser")]
         public IActionResult PutUser(User user)
         {
@@ -113,7 +121,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("DelUser")]
         public IActionResult DeleteUser(int id)
         {

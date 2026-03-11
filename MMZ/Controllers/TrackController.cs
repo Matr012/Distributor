@@ -7,7 +7,7 @@ namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    
     public class TrackController : ControllerBase
     {
         [HttpGet("Tracks")]
@@ -64,7 +64,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("NewTrack")]
         public IActionResult PostTrack(Track track)
         {
@@ -82,7 +82,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("ModifyTrack")]
         public IActionResult PutTrack(Track track)
         {
@@ -107,7 +107,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("DelTrack")]
         public IActionResult DeleteTrack(int id)
         {

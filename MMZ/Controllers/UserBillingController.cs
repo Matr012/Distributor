@@ -7,7 +7,7 @@ namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    
     public class UserBillingController : ControllerBase
     {
         private readonly MmzContext _context;
@@ -69,7 +69,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("NewUserBilling")]
         public IActionResult PostUserBilling(UserBilling userBilling)
         {
@@ -87,7 +87,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("ModifyUserBilling")]
         public IActionResult PutUser(UserBilling userBilling)
         {
@@ -112,7 +112,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("DelUserBilling")]
         public IActionResult DeleteUserBilling(int id)
         {

@@ -7,7 +7,7 @@ namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    
     public class UserCardController : ControllerBase
     {
         private readonly MmzContext _context;
@@ -69,7 +69,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("NewUserCard")]
         public IActionResult PostUserCard(UserCard userCard)
         {
@@ -87,7 +87,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("ModifyUserCard")]
         public IActionResult PutUserCard(UserCard userCard)
         {
@@ -112,7 +112,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("DelUserCard")]
         public IActionResult DeleteUserCard(int id)
         {

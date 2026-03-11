@@ -7,7 +7,7 @@ namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+   
     public class ArtistController : ControllerBase
     {
         [HttpGet("Artists")]
@@ -17,8 +17,8 @@ namespace MMZ.Controllers
             {
                 try
                 {
-                    List<Artist> albums = context.Artists.ToList();
-                    return Ok(albums);
+                    List<Artist> artists = context.Artists.ToList();
+                    return Ok(artists);
                 }
                 catch (Exception ex)
                 {
@@ -64,7 +64,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("NewArtist")]
         public IActionResult PostArtist(Artist artist)
         {
@@ -82,7 +82,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("ModifyArist")]
         public IActionResult PutArtist(Artist artist)
         {
@@ -107,7 +107,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("DelArtist")]
         public IActionResult DeleteArtist(int id)
         {

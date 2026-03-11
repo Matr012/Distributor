@@ -18,7 +18,7 @@ namespace MMZ.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        [HttpPost("NewRegistry")]
         public async Task<IActionResult> PostReg(User user)
         {
             try
@@ -45,7 +45,7 @@ namespace MMZ.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet]
+        [HttpGet("GetRegistry")]
         public async Task<IActionResult> ConfirmReg(string felhasznaloNev, string email)
         {
             try

@@ -52,7 +52,7 @@ namespace MMZ.Controllers
             try
             {
                 string doubleHash = Program.CreateSHA256(logindata.Hash);
-                User user = _context.Users.Include(u => u.PermissionNavigation).FirstOrDefault(u => u.Email == logindata.Email && u.PasswordHash == doubleHash && u.Verified == true);
+                User user = _context.Users.Include(u => u.PermissionNavigation).FirstOrDefault(u => u.Email == logindata.Email && u.PasswordHash == doubleHash && u.Verified == false);
                 if (user == null)
                 {
                     return NotFound("Hibás bejelentkezési adatok.");

@@ -7,7 +7,7 @@ namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    
     public class AlbumController : ControllerBase
     {
         [HttpGet("Albums")]
@@ -64,7 +64,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("NewAlbum")]
         public IActionResult PostAlbum(Album album)
         {
@@ -82,7 +82,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("ModifyAlbum")]
         public IActionResult PutAlbum(Album album)
         {
@@ -107,7 +107,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("DelAlbum")]
         public IActionResult DeleteAlbum(int id)
         {
