@@ -11,8 +11,6 @@ public partial class UserCard
 
     public string? CardHolderName { get; set; }
 
-    public int? CardTypeId { get; set; }
-
     public string? CardLast4 { get; set; }
 
     public int? CardExpMonth { get; set; }
@@ -24,8 +22,6 @@ public partial class UserCard
     public DateTime CreatedAt { get; set; }
 
     public DateTime UpdatedAt { get; set; }
-
-    public virtual CardType? CardType { get; set; }
 
     public virtual User User { get; set; } = null!;
 }

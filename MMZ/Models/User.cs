@@ -19,7 +19,7 @@ public partial class User
 
     public string PasswordHash { get; set; } = null!;
 
-    public string? ProfilePic { get; set; }
+    public byte[]? ProfilePic { get; set; }
 
     public bool? IsArtist { get; set; }
 

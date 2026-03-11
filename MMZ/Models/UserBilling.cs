@@ -23,5 +23,4 @@ public partial class UserBilling
 
     public DateTime UpdatedAt { get; set; }
 
-    public virtual User User { get; set; } = null!;
 }
