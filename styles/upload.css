@@ -1,0 +1,314 @@
+/* Upload oldalak - Album és Track feltöltés */
+
+/* Album feltöltés form */
+.album-form {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.form-left {
+  flex: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 30px;
+  align-content: flex-start;
+}
+
+.form-left label {
+  grid-column: span 2;
+  color: #00f6ff;
+}
+
+.form-left input,
+.form-left select,
+.form-left textarea {
+  grid-column: span 2;
+  height: 44px;
+  padding: 10px 14px;
+  background: #0b0b0b;
+  border: 2px solid #00f6ff;
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: 0 0 12px rgba(0, 246, 255, 0.3);
+  resize: vertical;
+}
+
+.form-left textarea {
+  height: 90px;
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Dátum mezők specifikus stílusai */
+.form-left input[type="date"],
+.form-left input[type="datetime-local"] {
+  color-scheme: dark;
+  cursor: pointer;
+}
+
+.form-left input[type="date"]::-webkit-calendar-picker-indicator,
+.form-left input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.form-right {
+  flex: 1;
+}
+
+/* Cover box */
+.cover-box {
+  height: 260px;
+  border: 2px dashed #00f6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00f6ff;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 246, 255, 0.4);
+}
+
+.cover-box:hover {
+  background: rgba(0, 246, 255, 0.06);
+  box-shadow: 0 0 30px rgba(0, 246, 255, 0.8);
+}
+
+#previewImage {
+  margin-top: 15px;
+  width: 100%;
+  display: none;
+  border: 2px solid #00f6ff;
+}
+
+.error-text {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Track feltöltés gomb wrapper */
+.track-upload-wrapper {
+  width: 100%;
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.track-upload-btn {
+  position: relative;
+  padding: 20px 64px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, rgba(0, 246, 255, 0.2), rgba(0, 150, 255, 0.15));
+  border: 3px solid #00f6ff;
+  border-radius: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  text-shadow: 0 0 15px rgba(0, 246, 255, 0.8);
+  box-shadow:
+    0 0 30px rgba(0, 246, 255, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.track-upload-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.5s ease;
+}
+
+.track-upload-btn:hover {
+  background: linear-gradient(135deg, rgba(0, 246, 255, 0.3), rgba(0, 150, 255, 0.25));
+  box-shadow:
+    0 0 50px rgba(0, 246, 255, 0.7),
+    0 8px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px) scale(1.05);
+  text-shadow: 0 0 25px rgba(0, 246, 255, 1);
+}
+
+.track-upload-btn:hover::before {
+  left: 100%;
+}
+
+.track-upload-btn:active {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 0 35px rgba(0, 246, 255, 0.6),
+    0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Textarea általános */
+textarea {
+  width: 100%;
+  background: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  padding: 10px;
+  font-size: 14px;
+  outline: none;
+  resize: vertical;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+textarea:focus {
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.9);
+}
+
+/* Audio feltöltés */
+input[type="file"] {
+  display: none;
+}
+
+#audioBox {
+  width: 100%;
+  min-height: 220px;
+  border: 2px dashed #00ffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #00ffff;
+  text-align: center;
+  padding: 40px;
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+#audioBox:hover {
+  box-shadow: 0 0 35px rgba(0, 255, 255, 1);
+  background: rgba(0, 255, 255, 0.05);
+}
+
+#audioBox .file-name {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+/* Form actions */
+.form-actions {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.form-actions button {
+  background: linear-gradient(135deg, rgba(0, 255, 239, 0.2), rgba(0, 150, 255, 0.15));
+  border: 2px solid #00ffff;
+  color: #fff;
+  padding: 16px 40px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin: 0 20px;
+  border-radius: 12px;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+  box-shadow: 
+    0 0 30px rgba(0, 255, 255, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-actions button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.5s ease;
+}
+
+.form-actions button:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(0, 150, 255, 0.25));
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 0 45px rgba(0, 255, 255, 0.7),
+    0 8px 30px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 0 25px rgba(0, 255, 255, 1);
+}
+
+.form-actions button:hover::before {
+  left: 100%;
+}
+
+.form-actions button:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Album lista */
+.album-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #00ffff;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+.album-info {
+  font-size: 16px;
+}
+
+.open-btn {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.15), rgba(0, 150, 255, 0.12));
+  border: 2px solid #00ffff;
+  color: #fff;
+  padding: 12px 24px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.8);
+  box-shadow: 
+    0 0 25px rgba(0, 255, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.open-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.open-btn:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.25), rgba(0, 150, 255, 0.2));
+  box-shadow: 
+    0 0 40px rgba(0, 255, 255, 0.6),
+    0 6px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px) scale(1.05);
+  text-shadow: 0 0 20px rgba(0, 255, 255, 1);
+}
+
+.open-btn:hover::before {
+  left: 100%;
+}
+
+.open-btn:active {
+  transform: translateY(0) scale(1.02);
+}
+

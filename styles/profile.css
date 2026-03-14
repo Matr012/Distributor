@@ -1,0 +1,413 @@
+/* Profile.html - Profil oldal */
+
+.profile-main {
+  padding: 60px 20px;
+  min-height: 80vh;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.03) 0%, rgba(0, 100, 200, 0.05) 50%, rgba(0, 255, 255, 0.03) 100%);
+}
+
+.profile-card {
+  background: linear-gradient(145deg, rgba(0, 255, 255, 0.08), rgba(0, 100, 200, 0.06));
+  border-radius: 25px;
+  padding: 50px;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 
+    0 0 40px rgba(0, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.05), transparent);
+  transform: rotate(45deg);
+  animation: shimmer 4s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.profile-avatar {
+  font-size: 120px;
+  color: var(--neon-cyan, #00ffff);
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 25px #00ffff);
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 25px #00ffff); }
+  50% { filter: drop-shadow(0 0 40px #00ffff) drop-shadow(0 0 60px rgba(0, 255, 255, 0.5)); }
+}
+
+.profile-avatar i {
+  filter: drop-shadow(0 0 15px #00ffff);
+}
+
+.profile-info h2 {
+  font-size: 2.8em;
+  margin-bottom: 40px;
+  color: #fff;
+  text-shadow: 0 0 30px #00ffff;
+  letter-spacing: 2px;
+}
+
+.profile-info p {
+  font-size: 1.4em;
+  margin: 20px 0;
+  color: #ddd;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.profile-info strong {
+  color: var(--neon-cyan, #00ffff);
+  text-shadow: 0 0 15px #00ffff;
+  font-weight: 700;
+}
+
+.profile-actions {
+  margin-top: 50px;
+  text-align: center;
+}
+
+  /* Profilkép feltöltés */
+    .profile-avatar-upload {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .profile-avatar-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 255, 255, 0.95), rgba(0, 255, 255, 0.8));
+      color: #000;
+      text-align: center;
+      padding: 15px 10px;
+      font-weight: bold;
+      font-size: 0.9em;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 0 0 50% 50%;
+      z-index: 3;
+      box-shadow: 0 -5px 20px rgba(0, 255, 255, 0.3);
+    }
+
+    .profile-avatar-upload:hover .profile-avatar-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Alapértelmezett avatar dizájn */
+    .default-avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, 
+        rgba(0, 255, 255, 0.1) 0%, 
+        rgba(0, 150, 255, 0.15) 25%,
+        rgba(0, 255, 255, 0.1) 50%,
+        rgba(100, 200, 255, 0.12) 75%,
+        rgba(0, 255, 255, 0.1) 100%);
+      border: 5px solid #00ffff;
+      box-shadow: 
+        0 0 40px #00ffff,
+        0 0 80px rgba(0, 255, 255, 0.4),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00ffff;
+      font-size: 4.5rem;
+      text-shadow: 0 0 30px #00ffff;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .default-avatar::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+      animation: rotate-shimmer 4s infinite linear;
+    }
+
+    .default-avatar:hover {
+      transform: scale(1.05);
+      box-shadow: 
+        0 0 60px #00ffff,
+        0 0 120px rgba(0, 255, 255, 0.6),
+        inset 0 0 30px rgba(0, 255, 255, 0.2);
+      text-shadow: 0 0 40px #00ffff;
+    }
+
+    /* Dinamikusan hozzáadott profilkép stílus */
+    .profile-avatar-upload .profile-avatar-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #00ffff;
+      box-shadow: 
+        0 0 40px #00ffff,
+        0 0 80px rgba(0, 255, 255, 0.4),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .profile-avatar-upload .profile-avatar-img:hover {
+      transform: scale(1.05);
+      box-shadow: 
+        0 0 60px #00ffff,
+        0 0 120px rgba(0, 255, 255, 0.6),
+        inset 0 0 30px rgba(0, 255, 255, 0.2);
+    }
+
+    @keyframes rotate-shimmer {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Header profil kép */
+    .header-profile-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #00ffff;
+      box-shadow: 0 0 15px #00ffff;
+    }
+
+    /* Profil sáv */
+    .profile-header-bar {
+      background: linear-gradient(145deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 100, 200, 0.08) 50%, rgba(0, 255, 255, 0.1) 100%);
+      border: 2px solid rgba(0, 255, 255, 0.4);
+      padding: 60px 30px;
+      text-align: center;
+      box-shadow: 
+        0 8px 40px rgba(0, 255, 255, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 60px rgba(0, 255, 255, 0.15);
+      margin: 60px auto;
+      border-radius: 30px;
+      max-width: 900px;
+      position: relative;
+      backdrop-filter: blur(15px);
+      overflow: hidden;
+    }
+
+    .profile-header-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+      animation: slide-shimmer 3s infinite;
+    }
+
+    @keyframes slide-shimmer {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    .profile-header-name {
+      font-size: 2.8em;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 20px #00ffff;
+      margin: 20px 0;
+    }
+
+    .profile-header-details {
+      font-size: 1.4em;
+      color: #ccc;
+      line-height: 2;
+    }
+
+    .profile-header-details strong {
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      min-width: 120px;
+      display: inline-block;
+    }
+
+    /* Header jobb oldal – szép arányos elrendezés */
+    .user-profile {
+      display: flex;
+      align-items: center;
+    }
+
+    .profile-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 12px;
+      transition: background 0.3s;
+    }
+
+    .profile-btn:hover {
+      background: rgba(0, 255, 255, 0.1);
+    }
+
+    .user-name {
+      color: white;
+      font-weight: bold;
+      font-size: 1em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 150px;
+    }
+
+    @media (max-width: 768px) {
+      .user-name {
+        display: none;
+      }
+    }
+
+    .profile-name-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.profile-header-name {
+  font-size: 2.8em;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 20px #00ffff;
+  margin: 0 0 10px 0;
+  display: inline-block;
+}
+
+.artist-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 1.6em;
+  color: #bbb;
+  margin-top: 15px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 100, 200, 0.08));
+  border-radius: 25px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.artist-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 255, 255, 0.3);
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.15), rgba(0, 100, 200, 0.12));
+}
+
+.artist-label {
+  font-size: 0.9em;
+  color: #ddd;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.verified-check {
+  color: #00ffff;
+  font-size: 1.4em;
+  text-shadow: 
+    0 0 20px #00ffff,
+    0 0 35px rgba(0, 255, 255, 0.5);
+  font-weight: bold;
+  animation: pulse-check 2s infinite ease-in-out;
+}
+
+@keyframes pulse-check {
+  0%, 100% { 
+    text-shadow: 0 0 20px #00ffff, 0 0 35px rgba(0, 255, 255, 0.5); 
+    transform: scale(1);
+  }
+  50% { 
+    text-shadow: 0 0 30px #00ffff, 0 0 50px rgba(0, 255, 255, 0.8);
+    transform: scale(1.1);
+  }
+}
+
+/* Profile actions button styling */
+.profile-actions .primary-btn {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(0, 150, 255, 0.15));
+  border: 2px solid #00ffff;
+  color: #fff;
+  padding: 16px 32px;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 15px;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+  box-shadow: 
+    0 0 30px rgba(0, 255, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-actions .primary-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.profile-actions .primary-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(0, 150, 255, 0.25));
+  box-shadow: 
+    0 0 50px rgba(0, 255, 255, 0.6),
+    0 8px 30px rgba(0, 255, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 0 25px rgba(0, 255, 255, 1);
+}
+
+.profile-actions .primary-btn:hover::before {
+  left: 100%;
+}
+
+.profile-actions .primary-btn:active {
+  transform: translateY(-1px) scale(1.02);
+}

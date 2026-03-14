@@ -1,0 +1,348 @@
+/* Autentikációs oldalak (register.html, login.html) */
+
+.auth-main {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.auth-container-flex {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1300px;
+  width: 100%;
+}
+
+/* Modern auth box */
+.modern-auth-box {
+  background: rgba(1, 65, 95, 0.6);
+  border: 3px solid #00ffef;
+  padding: 60px 40px;
+  width: 420px;
+  max-width: 90%;
+  box-shadow: 0 0 40px rgba(0, 255, 239, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.modern-auth-box h1 {
+  font-size: 2.3rem;
+  letter-spacing: 5px;
+  text-shadow: 0 0 20px #00ffef;
+  margin-bottom: 50px;
+  color: #00ffef;
+  line-height: 1.2;
+}
+
+.modern-auth-box form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modern-auth-box input {
+  background: #0b0b0b;
+  border: 2px solid #00ffef;
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 1.1rem;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(0, 255, 239, 0.3);
+}
+
+.modern-auth-box input::placeholder {
+  color: #999;
+}
+
+/* Telefonszám mező zászlóval */
+.phone-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.phone-input-container input {
+  width: 100%;
+  padding-left: 56px !important;
+  background: #0b0b0b;
+  border: 2px solid #00ffef;
+  border-radius: 8px;
+  padding: 16px 20px 16px 56px;
+  font-size: 1.1rem;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(0, 255, 239, 0.3);
+}
+
+#countryFlag {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2;
+  pointer-events: none;
+  display: none;
+}
+
+/* OR elválasztó */
+.or-separator {
+  margin: 40px 0;
+  font-size: 1.2rem;
+  color: #00ffef;
+  position: relative;
+  text-shadow: 0 0 10px #00ffef;
+}
+
+.or-separator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 255, 239, 0.4);
+}
+
+.or-separator::after {
+  background: #000;
+  padding: 0 30px;
+  position: relative;
+}
+
+/* Social gombok */
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  /* padding: 16px; */
+  padding: 9px;
+  height: 4rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 239, 0.2);
+  text-decoration: none;
+  border: none;
+}
+
+.social-btn:hover {
+  transform: scale(1.05);
+}
+
+.google-btn {
+  background: #fff;
+  color: #000;
+  border: none;
+}
+
+.google-btn .social-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.apple-btn {
+  background: #000;
+  color: #fff;
+  border: 2px solid #333;
+}
+
+.apple-btn i {
+  font-size: 1.6rem;
+}
+
+/* Auth alsó link */
+.auth-bottom-link {
+  margin-top: 50px;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: #00ffef;
+  text-shadow: 0 0 10px #00ffef;
+}
+
+.auth-bottom-link a {
+  color: #00ffef;
+  text-decoration: underline;
+  font-size: 1.4rem;
+  text-shadow: 0 0 12px #00ffef;
+}
+
+.auth-bottom-link a:hover {
+  background: #00ffef;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+/* FAQ szekció */
+.faq-section {
+  flex: 1;
+  min-width: 400px;
+  max-width: 600px;
+  padding: 40px 0;
+}
+
+.faq-section h1 {
+  font-size: 2.6rem;
+  letter-spacing: 6px;
+  text-shadow: 0 0 20px #00ffef;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 255, 239, 0.3);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-shadow: 0 0 10px #00ffef;
+  transition: all 0.3s;
+  word-wrap: break-word;
+}
+
+.faq-question span {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.faq-question:hover {
+  color: #fff;
+}
+
+.faq-toggle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00ffef;
+  transition: transform 0.3s;
+}
+
+.faq-item.active .faq-toggle {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.5s ease;
+  padding: 0 20px;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  padding: 25px 20px;
+}
+
+
+/*loginmodal*/
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(3px);
+}
+
+.auth-modal-content {
+  background: #1a1a1a;
+  color: #ffffff;
+  width: 90%;
+  max-width: 400px;
+  padding: 1.8rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.55);
+  position: relative;
+  text-align: center;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  font-size: 34px;
+  cursor: pointer;
+  color: #777;
+}
+
+.modal-close:hover {
+  color: #fff;
+}
+
+#modalTitle {
+  margin: 0.5rem 0 1.2rem 0;
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+#modalMessage {
+  margin: 0 0 1.4rem 0;
+  line-height: 1.45;
+  white-space: pre-line;
+  color: #ddd;
+}
+
+#modalOkBtn {
+  min-width: 140px;
+  padding: 0.8rem 1.5rem;
+}
+
+/* Loading Spinner */
+.loading-spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.loading-spinner-overlay.active {
+  display: flex;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(0, 255, 239, 0.2);
+  border-top: 6px solid #00ffef;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 30px rgba(0, 255, 239, 0.5);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

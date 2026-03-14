@@ -1,0 +1,55 @@
+/* Albumoldalak stílusai */
+
+.album-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.album-cover {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+  border: 3px solid #00ffef;
+  box-shadow: 0 0 30px #00ffef;
+  margin-bottom: 30px;
+}
+
+.album-title {
+  font-size: 2.8rem;
+  color: #00ffef;
+  text-shadow: 0 0 15px #00ffef;
+  margin-bottom: 10px;
+}
+
+.album-artist {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.album-genre-year {
+  font-size: 1.3rem;
+  color: #00ffef;
+  margin-bottom: 40px;
+}
+
+.album-streaming-links {
+  display: flex;
+  gap: 40px;
+}
+
+.album-streaming-links a {
+  color: #00ffef;
+  font-size: 3.5rem;
+  text-shadow: 0 0 20px #00ffef;
+  transition: all 0.3s;
+}
+
+.album-streaming-links a:hover {
+  color: #fff;
+  transform: scale(1.2);
+  text-shadow: 0 0 30px #00ffef;
+}
