@@ -1,0 +1,216 @@
+/* Főoldal slideshow és galéria */
+
+/* Slideshow container */
+.slideshow-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  overflow: hidden;
+  border: 3px solid #00ffef;
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(0, 255, 239, 0.05), rgba(0, 100, 200, 0.08));
+  box-shadow: 
+    0 0 40px rgba(0, 255, 239, 0.4),
+    inset 0 0 60px rgba(1, 65, 95, 0.3),
+    0 10px 40px rgba(0, 0, 0, 0.3);
+  padding: 20px 0;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.slideshow-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 239, 0.1), transparent);
+  animation: container-shimmer 5s infinite;
+  pointer-events: none;
+}
+
+@keyframes container-shimmer {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.slideshow-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.slideshow-item {
+  position: relative;
+  flex-shrink: 0;
+  margin: 0 15px;
+  overflow: hidden;
+  border: 2px solid rgba(0, 255, 239, 0.4);
+  border-radius: 15px;
+  box-shadow: 
+    0 0 25px rgba(0, 255, 239, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slideshow-item:hover {
+  border-color: #00ffef;
+  box-shadow: 
+    0 0 40px rgba(0, 255, 239, 0.6),
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+}
+
+.slideshow-item img {
+  height: 400px;
+  width: auto;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.slideshow-item:hover img {
+  transform: scale(1.08);
+}
+
+/* Átlátszó kék overlay hoverkor */
+.slideshow-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 255, 239, 0.15);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.slideshow-item:hover .slideshow-overlay {
+  opacity: 1;
+}
+
+/* Slideshow feliratok */
+.slideshow-caption {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+  text-align: center;
+  color: #00ffef;
+  font-weight: bold;
+  text-shadow: 0 0 15px #00ffef;
+  opacity: 1 !important;
+  z-index: 2;
+  padding: 0 8px;
+}
+
+.caption-title {
+  font-size: 1.4rem;
+}
+
+.caption-artist {
+  font-size: 1.1rem;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Streaming linkek */
+.streaming-links {
+  margin-top: 8px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.streaming-links a {
+  color: #fff;
+  font-size: 1.6rem;
+  background: linear-gradient(135deg, rgba(0, 255, 239, 0.15), rgba(0, 150, 255, 0.12));
+  border: 2px solid rgba(0, 255, 239, 0.5);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 0 15px rgba(0, 255, 239, 0.8);
+  box-shadow: 
+    0 0 15px rgba(0, 255, 239, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.9;
+  position: relative;
+  overflow: hidden;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.streaming-links a i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.streaming-links a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.streaming-links a:hover {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(0, 255, 239, 0.3), rgba(0, 150, 255, 0.2));
+  border-color: #00ffef;
+  text-shadow: 0 0 30px rgba(0, 255, 239, 1);
+  box-shadow: 
+    0 0 25px rgba(0, 255, 239, 0.6),
+    0 4px 15px rgba(0, 0, 0, 0.3);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.streaming-links a:hover::before {
+  left: 100%;
+}
+
+.slideshow-item:hover .slideshow-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animációk */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.slideshow-container:hover .slideshow-track {
+  animation-play-state: paused;
+}
+
+/* Mobilra optimalizálás */
+@media (max-width: 900px) {
+  .slideshow-item img {
+    height: 250px;
+  }
+  
+  .slideshow-caption {
+    padding: 10px 8px;
+    font-size: 0.9rem;
+  }
+}
