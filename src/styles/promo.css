@@ -1,0 +1,190 @@
+/* Promo.html és Policy.html specifikus stílusok */
+
+/* Promóciós oldal címek */
+main h1 {
+  font-size: 2.5rem;
+  letter-spacing: 8px;
+  text-align: center;
+  margin-bottom: 50px;
+  text-shadow: 
+    0 0 20px rgba(0, 255, 239, 0.8),
+    0 0 40px rgba(0, 255, 239, 0.5);
+  color: #00ffef;
+}
+
+.promo-content {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: normal;
+}
+
+.promo-content p {
+  margin-bottom: 28px;
+  text-align: center;
+  color: #00ffef;
+}
+
+.promo-content strong {
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 239, 0.6);
+  font-weight: bold;
+}
+
+.promo-content ul {
+  margin: 35px auto;
+  padding: 0;
+  max-width: 650px;
+  text-align: center;
+  list-style: none;
+}
+
+.promo-content ul li {
+  margin-bottom: 16px;
+  line-height: 1.8;
+  position: relative;
+  padding-left: 30px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.promo-content ul li::before {
+  content: '▸';
+  color: #00ffef;
+  font-size: 1.3rem;
+  position: absolute;
+  left: 0;
+  text-shadow: 0 0 10px rgba(0, 255, 239, 0.8);
+}
+
+/* AboutUs oldal specifikus */
+.aboutus-page main h1 {
+  font-size: 2.2rem;
+  letter-spacing: 6px;
+  text-align: left;
+  margin-bottom: 40px;
+  text-shadow: 0 0 15px #00ffef;
+}
+
+.aboutus-page main h2 {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: left;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.aboutus-page main h2 p {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(0, 255, 239, 0.15), rgba(0, 150, 255, 0.12));
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px rgba(0, 255, 239, 0.8);
+  padding: 14px 32px;
+  border: 2px solid #00ffef;
+  border-radius: 12px;
+  box-shadow: 
+    0 0 25px rgba(0, 255, 239, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 280px;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.contact-link:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 239, 0.25), rgba(0, 150, 255, 0.2));
+  box-shadow: 
+    0 0 40px rgba(0, 255, 239, 0.6),
+    0 8px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+  text-shadow: 0 0 20px rgba(0, 255, 239, 1);
+}
+
+.contact-link:hover::before {
+  left: 100%;
+}
+
+.contact-link i {
+  font-size: 1.6rem;
+}
+
+.email-link {
+  position: relative;
+}
+.email-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: #00ffef;
+  padding: 8px 16px;
+  border: 2px solid #00ffef;
+  font-size: 1rem;
+  font-weight: bold;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 20px #00ffef;
+  margin-bottom: 10px;
+  letter-spacing: 1.5px;
+}
+.email-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  border-top-color: #00ffef;
+}
+.email-link:hover .email-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+@media (max-width: 900px) {
+  .email-tooltip { display: none; }
+  .contact-link {
+    min-width: 260px;
+    font-size: 1.2rem;
+    padding: 10px 24px;
+  }
+}

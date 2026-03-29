@@ -1,0 +1,183 @@
+/* Albumok listája oldal */
+
+.albums-page {
+  padding: 40px 20px;
+  min-height: 80vh;
+}
+
+.albums-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 50px;
+  margin-top: 60px;
+  justify-items: center;
+}
+
+.album-card {
+  background: rgba(0, 255, 255, 0.08);
+  border-radius: 25px;
+  width: 320px;
+  overflow: visible;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.album-card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 50px rgba(0, 255, 255, 0.7);
+}
+
+.track-list-tooltip {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #00ffff;
+  border-radius: 15px;
+  padding: 20px;
+  width: 320px;
+  max-height: 400px;
+  overflow-y: auto;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 100;
+}
+
+.album-card:hover .track-list-tooltip {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.track-list-tooltip h3 {
+  color: #00ffff;
+  font-size: 1.3em;
+  margin: 0 0 15px 0;
+  text-align: center;
+  text-shadow: 0 0 15px #00ffff;
+}
+
+.track-item {
+  color: white;
+  font-size: 1em;
+  margin: 8px 0;
+  padding: 8px;
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.track-item:hover {
+  background: rgba(0, 255, 255, 0.2);
+}
+
+.track-list-tooltip::-webkit-scrollbar {
+  width: 8px;
+}
+
+.track-list-tooltip::-webkit-scrollbar-track {
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.track-list-tooltip::-webkit-scrollbar-thumb {
+  background: #00ffff;
+  border-radius: 4px;
+}
+
+.album-cover-wrapper {
+  position: relative;
+  height: 320px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  overflow: hidden;
+}
+
+.album-card .album-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.platform-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.album-card:hover .platform-overlay {
+  opacity: 1;
+}
+
+.platform-overlay a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  font-size: 28px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Spotify — eredeti zöld */
+.platform-overlay a.platform-spotify {
+  background: #1DB954;
+  color: #fff;
+  box-shadow: 0 0 18px rgba(29, 185, 84, 0.6);
+}
+
+.platform-overlay a.platform-spotify:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 30px rgba(29, 185, 84, 0.9), 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Apple Music — fekete */
+.platform-overlay a.platform-apple {
+  background: #000;
+  color: #fff;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.platform-overlay a.platform-apple:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 4px 20px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.album-card-info {
+  padding: 25px;
+  text-align: center;
+}
+
+.album-card-title {
+  font-size: 2.2em;
+  color: white;
+  text-shadow: 0 0 15px #00ffff;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.album-card-artist {
+  font-size: 1.5em;
+  color: #aaa;
+  text-shadow: 0 0 10px #00ffff;
+  word-wrap: break-word;
+}
+
+.no-albums {
+  text-align: center;
+  color: #888;
+  font-size: 1.8em;
+  margin-top: 120px;
+}

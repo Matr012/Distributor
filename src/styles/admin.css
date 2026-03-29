@@ -1,0 +1,135 @@
+/* Admin Album Kezelés */
+
+.admin-albums-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.admin-album-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: rgba(0, 255, 239, 0.06);
+  border: 1px solid rgba(0, 255, 239, 0.25);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.admin-album-row:hover {
+  border-color: rgba(0, 255, 239, 0.6);
+  box-shadow: 0 0 25px rgba(0, 255, 239, 0.2);
+}
+
+.admin-album-cover {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid rgba(0, 255, 239, 0.3);
+}
+
+.admin-album-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-album-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #00ffef;
+  text-shadow: 0 0 10px rgba(0, 255, 239, 0.5);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-album-artist {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+
+.admin-album-tracks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.admin-track-chip {
+  background: rgba(0, 255, 239, 0.12);
+  border: 1px solid rgba(0, 255, 239, 0.2);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 0.82rem;
+  color: #ccc;
+  white-space: nowrap;
+}
+
+.admin-album-actions {
+  display: flex;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.admin-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.approve-btn {
+  color: #4ade80;
+  border-color: #4ade80;
+}
+
+.approve-btn:hover {
+  background: #4ade80;
+  color: #000;
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.6);
+}
+
+.reject-btn {
+  color: #f87171;
+  border-color: #f87171;
+}
+
+.reject-btn:hover {
+  background: #f87171;
+  color: #000;
+  box-shadow: 0 0 20px rgba(248, 113, 113, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .admin-album-row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .admin-album-cover {
+    width: 120px;
+    height: 120px;
+  }
+
+  .admin-album-tracks {
+    justify-content: center;
+  }
+
+  .admin-album-actions {
+    justify-content: center;
+  }
+}

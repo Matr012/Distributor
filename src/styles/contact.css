@@ -1,0 +1,242 @@
+/* Contact.html - Kapcsolat oldal */
+
+.contact-container {
+  display: flex;
+  gap: 60px;
+  max-width: 1200px;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.contact-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+  text-shadow: 0 0 12px #00ffef;
+  text-align: center;
+}
+
+.contact-info p {
+  line-height: 1.8;
+  margin-bottom: 40px;
+  max-width: 500px;
+}
+
+/* Contact form */
+.contact-form-box {
+  flex: 1;
+  min-width: 400px;
+  background: rgba(1, 65, 95, 0.4);
+  border: 3px solid #00ffef;
+  padding: 40px;
+  box-shadow: 0 0 30px rgba(1, 65, 95, 0.4);
+}
+
+.contact-form-box h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+  text-shadow: 0 0 12px #00ffef;
+}
+
+.contact-form-box label {
+  display: block;
+  margin: 20px 0 8px;
+  font-weight: bold;
+  text-shadow: 0 0 8px #00ffef;
+}
+
+.contact-form-box input,
+.contact-form-box textarea {
+  width: 100%;
+  background: transparent;
+  border: 2px solid #00ffef;
+  color: #00ffef;
+  padding: 12px;
+  font-size: 1rem;
+  box-shadow: 0 0 10px rgba(1, 65, 95, 0.4);
+}
+
+.contact-form-box button {
+  width: 100%;
+  margin-top: 30px;
+  background: linear-gradient(135deg, rgba(0, 255, 239, 0.2), rgba(0, 150, 255, 0.15));
+  border: 2px solid #00ffef;
+  color: #fff;
+  padding: 16px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-shadow: 0 0 15px rgba(0, 255, 239, 0.8);
+  box-shadow: 
+    0 0 30px rgba(0, 255, 239, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-form-box button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.5s ease;
+}
+
+.contact-form-box button:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 239, 0.3), rgba(0, 150, 255, 0.25));
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 0 45px rgba(0, 255, 239, 0.6),
+    0 8px 30px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 0 25px rgba(0, 255, 239, 1);
+}
+
+.contact-form-box button:hover::before {
+  left: 100%;
+}
+
+.contact-form-box button:active {
+  transform: translateY(-1px) scale(1.0);
+}
+
+/* Contact linkek */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(0, 255, 239, 0.15), rgba(0, 150, 255, 0.12));
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px rgba(0, 255, 239, 0.8);
+  padding: 14px 32px;
+  border: 2px solid #00ffef;
+  border-radius: 12px;
+  box-shadow: 
+    0 0 25px rgba(0, 255, 239, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 280px;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.contact-link:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 239, 0.25), rgba(0, 150, 255, 0.2));
+  box-shadow: 
+    0 0 40px rgba(0, 255, 239, 0.6),
+    0 8px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+  text-shadow: 0 0 20px rgba(0, 255, 239, 1);
+}
+
+.contact-link:hover::before {
+  left: 100%;
+}
+
+.contact-link i {
+  font-size: 1.6rem;
+}
+
+/* Email tooltip */
+.email-link {
+  position: relative;
+}
+
+.email-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: #00ffef;
+  padding: 8px 16px;
+  border: 2px solid #00ffef;
+  font-size: 1rem;
+  font-weight: bold;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 20px #00ffef;
+  margin-bottom: 10px;
+  letter-spacing: 1.5px;
+}
+
+.email-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  border-top-color: #00ffef;
+}
+
+.email-link:hover .email-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+/* Mobilra optimalizálás */
+@media (max-width: 900px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-form-box {
+    width: 90%;
+    max-width: 500px;
+  }
+  
+  .email-tooltip {
+    display: none;
+  }
+  
+  .contact-link {
+    min-width: 260px;
+    font-size: 1.2rem;
+    padding: 10px 24px;
+  }
+}
+
