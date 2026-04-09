@@ -69,7 +69,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPost("NewUserBilling")]
         public IActionResult PostUserBilling(UserBilling userBilling)
         {

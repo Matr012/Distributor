@@ -69,7 +69,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPost("NewUserCard")]
         public IActionResult PostUserCard(UserCard userCard)
         {

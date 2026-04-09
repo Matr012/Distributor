@@ -20,18 +20,15 @@ namespace MMZ.Controllers
             {
                 try
                 {
-                    List<MusicStyle> musicStyles = context.MusicStyles.ToList();
+                    var musicStyles = context.MusicStyles
+                        .OrderBy(s => s.GenreName)
+                        .Select(s => new { s.Id, s.GenreName })
+                        .ToList();
                     return Ok(musicStyles);
                 }
                 catch (Exception ex)
                 {
-                    List<MusicStyle> valasz = new()
-                    {
-                        new MusicStyle { Id = -1,
-                                   GenreName = "Hiba történt: "+ex.Message,
-                        }
-                    };
-                    return BadRequest(valasz);
+                    return BadRequest(new { error = "Hiba történt: " + ex.Message });
                 }
             }
         }

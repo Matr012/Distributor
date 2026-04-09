@@ -69,7 +69,7 @@ namespace MMZ.Controllers
                 }
             }
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPost("NewUserSubscription")]
         public IActionResult PostUserSubscription(UserSubscription userSubscription)
         {

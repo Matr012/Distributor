@@ -10,14 +10,18 @@ namespace MMZ.Controllers
    
     public class ArtistController : ControllerBase
     {
+        private readonly MmzContext _context;
+        public ArtistController(MmzContext context) 
+        {
+            _context = context; 
+        }
         [HttpGet("Artists")]
         public IActionResult GetArtists()
         {
-            using (var context = new MmzContext())
             {
                 try
                 {
-                    List<Artist> artists = context.Artists.ToList();
+                    List<Artist> artists = _context.Artists.ToList();
                     return Ok(artists);
                 }
                 catch (Exception ex)
@@ -36,11 +40,10 @@ namespace MMZ.Controllers
         [HttpGet("ArtistById")]
         public IActionResult GetArtistById(int id)
         {
-            using (var context = new MmzContext())
             {
                 try
                 {
-                    Artist eredmeny = context.Artists.FirstOrDefault(ar => ar.Id == id);
+                    Artist eredmeny = _context.Artists.FirstOrDefault(ar => ar.Id == id);
                     if (eredmeny != null)
                         return Ok(eredmeny);
                     else
@@ -64,20 +67,32 @@ namespace MMZ.Controllers
                 }
             }
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPost("NewArtist")]
         public IActionResult PostArtist(Artist artist)
         {
-            using (var context = new MmzContext())
             {
                 try
                 {
-                    context.Artists.Add(artist);
-                    context.SaveChanges();
-                    return Ok("Sikeres rögzítés");
+                    var newArtist = new Artist
+                    {
+                        Name = artist.Name,
+                        Description = artist.Description,
+                        SpotifyUrl = artist.SpotifyUrl,
+                        SoundcloudUrl = artist.SoundcloudUrl,
+                        OtherSocials = artist.OtherSocials,
+                        Avatar = artist.Avatar,
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow,
+                    };
+                    _context.Artists.Add(newArtist);
+                    _context.SaveChanges();
+                    return Ok(newArtist.Id.ToString());
                 }
                 catch (Exception ex)
                 {
+                    var msg = ex.InnerException?.Message ?? ex.Message;
+                    return BadRequest($"Hiba a rögzítés közben {msg}");
                     return BadRequest($"Hiba a rögzítés közben {ex.Message}");
                 }
             }
@@ -86,14 +101,13 @@ namespace MMZ.Controllers
         [HttpPut("ModifyArist")]
         public IActionResult PutArtist(Artist artist)
         {
-            using (var context = new MmzContext())
             {
                 try
                 {
-                    if (context.Artists.Contains(artist))
+                    if (_context.Artists.Contains(artist))
                     {
-                        context.Artists.Update(artist);
-                        context.SaveChanges();
+                        _context.Artists.Update(artist);
+                        _context.SaveChanges();
                         return Ok("Sikeres rögzítés");
                     }
                     else
@@ -111,14 +125,13 @@ namespace MMZ.Controllers
         [HttpDelete("DelArtist")]
         public IActionResult DeleteArtist(int id)
         {
-            using (var context = new MmzContext())
             {
                 try
                 {
-                    if (context.Artists.Select(ar => ar.Id).Contains(id))
+                    if (_context.Artists.Select(ar => ar.Id).Contains(id))
                     {
-                        context.Remove(new Artist { Id = id });
-                        context.SaveChanges();
+                        _context.Remove(new Artist { Id = id });
+                        _context.SaveChanges();
                         return Ok("Sikeres törlés");
                     }
                     else

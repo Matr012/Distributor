@@ -52,7 +52,7 @@ namespace MMZ.Controllers
             try
             {
                 string doubleHash = Program.CreateSHA256(logindata.Hash);
-                User user = _context.Users.Include(u => u.PermissionNavigation).FirstOrDefault(u => u.Email == logindata.Email && u.PasswordHash == doubleHash && u.Verified == false);
+                User user = _context.Users.Include(u => u.PermissionNavigation).FirstOrDefault(u => u.Email == logindata.Email && u.PasswordHash == doubleHash);
                 if (user == null)
                 {
                     return NotFound("Hibás bejelentkezési adatok.");
@@ -85,6 +85,47 @@ namespace MMZ.Controllers
                 return BadRequest($"Hiba a kérés teljesítése közben: {ex.Message}");
             }
 
+        }
+
+        [Authorize]
+        [HttpGet("Me")]
+        public IActionResult Me()
+        {
+            try
+            {
+                var email = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value
+                         ?? User.FindFirst(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub)?.Value;
+
+                if (email == null) return Unauthorized();
+
+                var user = _context.Users
+                    .Include(u => u.PermissionNavigation)
+                    .FirstOrDefault(u => u.Email == email);
+
+                if (user == null) return NotFound();
+
+                var now = DateTime.UtcNow;
+                var hasActiveSub = _context.UserSubscriptions.Any(s =>
+                    s.UserId == user.Id &&
+                    s.Status == "active" &&
+                    (s.ExpiryDate == null || s.ExpiryDate > now));
+
+                return Ok(new
+                {
+                    id = user.Id,
+                    email = user.Email,
+                    username = user.Username,
+                    firstName = user.FirstName,
+                    lastName = user.LastName,
+                    permission = user.Permission,
+                    role = user.PermissionNavigation?.Name,
+                    hasActiveSubscription = hasActiveSub
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Hiba a kérés teljesítése közben: {ex.Message}");
+            }
         }
     }
 }

@@ -10,14 +10,18 @@ namespace MMZ.Controllers
     
     public class TrackController : ControllerBase
     {
+        private readonly MmzContext _context;
+        public TrackController(MmzContext context) 
+        { 
+            _context = context; 
+        }
         [HttpGet("Tracks")]
         public IActionResult GetTracks()
         {
-            using (var context = new MmzContext())
             {
                 try
                 {
-                    List<Track> tracks = context.Tracks.ToList();
+                    List<Track> tracks = _context.Tracks.ToList();
                     return Ok(tracks);
                 }
                 catch (Exception ex)
@@ -36,11 +40,10 @@ namespace MMZ.Controllers
         [HttpGet("TrackById")]
         public IActionResult GetTrackById(int id)
         {
-            using (var context = new MmzContext())
             {
                 try
                 {
-                    Track eredmeny = context.Tracks.FirstOrDefault(t => t.Id == id);
+                    Track eredmeny = _context.Tracks.FirstOrDefault(t => t.Id == id);
                     if (eredmeny != null)
                         return Ok(eredmeny);
                     else
@@ -64,21 +67,38 @@ namespace MMZ.Controllers
                 }
             }
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPost("NewTrack")]
         public IActionResult PostTrack(Track track)
         {
-            using (var context = new MmzContext())
             {
                 try
                 {
-                    context.Tracks.Add(track);
-                    context.SaveChanges();
-                    return Ok("Sikeres rögzítés");
+                    var newTrack = new Track
+                    {
+                        AlbumId = track.AlbumId,
+                        TrackNumber = track.TrackNumber,
+                        Title = track.Title,
+                        Subtitle = track.Subtitle,
+                        IsrcRequest = track.IsrcRequest,
+                        OriginalReleaseDate = track.OriginalReleaseDate,
+                        Collaborators = track.Collaborators,
+                        ExplicitLyrics = track.ExplicitLyrics,
+                        Composers = track.Composers,
+                        Lyricists = track.Lyricists,
+                        AudioPath = track.AudioPath,
+                        StyleId = track.StyleId > 0 ? track.StyleId : null,
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow,
+                    };
+                    _context.Tracks.Add(newTrack);
+                    _context.SaveChanges();
+                    return Ok(newTrack.Id.ToString());
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest($"Hiba a rögzítés közben {ex.Message}");
+                    var msg = ex.InnerException?.Message ?? ex.Message;
+                    return BadRequest($"Hiba a rögzítés közben {msg}");
                 }
             }
         }
@@ -86,14 +106,13 @@ namespace MMZ.Controllers
         [HttpPut("ModifyTrack")]
         public IActionResult PutTrack(Track track)
         {
-            using (var context = new MmzContext())
             {
                 try
                 {
-                    if (context.Tracks.Contains(track))
+                    if (_context.Tracks.Contains(track))
                     {
-                        context.Tracks.Update(track);
-                        context.SaveChanges();
+                        _context.Tracks.Update(track);
+                        _context.SaveChanges();
                         return Ok("Sikeres rögzítés");
                     }
                     else
@@ -111,14 +130,13 @@ namespace MMZ.Controllers
         [HttpDelete("DelTrack")]
         public IActionResult DeleteTrack(int id)
         {
-            using (var context = new MmzContext())
             {
                 try
                 {
-                    if (context.Tracks.Select(t => t.Id).Contains(id))
+                    if (_context.Tracks.Select(t => t.Id).Contains(id))
                     {
-                        context.Remove(new Track { Id = id });
-                        context.SaveChanges();
+                        _context.Remove(new Track { Id = id });
+                        _context.SaveChanges();
                         return Ok("Sikeres törlés");
                     }
                     else
