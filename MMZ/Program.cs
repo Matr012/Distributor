@@ -68,16 +68,19 @@ namespace MMZ
         {
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient(mailSettings.SmtpServer);
+            
+            mail.From = new MailAddress(mailSettings.SenderEmail, mailSettings.SenderName);
             mail.To.Add(mailAddressTo);
             mail.Subject = subject;
             mail.Body = body;
+            mail.IsBodyHtml = true;
 
             /*System.Net.Mail.Attachment attachment;
             attachment = new System.Net.Mail.Attachment("");
             mail.Attachments.Add(attachment);*/
 
-            SmtpServer.Port = 587;
-
+            SmtpServer.Port = mailSettings.Port;
+            SmtpServer.Credentials = new System.Net.NetworkCredential(mailSettings.SenderEmail, mailSettings.SenderPassword);
             SmtpServer.EnableSsl = true;
 
             await SmtpServer.SendMailAsync(mail);
@@ -102,7 +105,7 @@ namespace MMZ
 
 
             //Mail settings
-            builder.Configuration.GetSection("MailServices").Bind(mailSettings);
+            builder.Configuration.GetSection("MailSettings").Bind(mailSettings);
             builder.Services.AddSingleton(mailSettings);
 
             //FTP settings
