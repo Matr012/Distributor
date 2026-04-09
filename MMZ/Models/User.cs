@@ -33,7 +33,7 @@ public partial class User
 
     public virtual ICollection<Album> Albums { get; set; } = new List<Album>();
 
-    public virtual Privilege PermissionNavigation { get; set; } = null!;
+    public virtual Privilege? PermissionNavigation { get; set; }
 
     public virtual ICollection<UserBilling> UserBillings { get; set; } = new List<UserBilling>();
 

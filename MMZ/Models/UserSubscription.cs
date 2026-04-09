@@ -21,7 +21,7 @@ public partial class UserSubscription
 
     public bool? AutoRenew { get; set; }
 
-    public virtual SubscriptionPlan Plan { get; set; } = null!;
+    public virtual SubscriptionPlan? Plan { get; set; }
 
-    public virtual User User { get; set; } = null!;
+    public virtual User? User { get; set; }
 }

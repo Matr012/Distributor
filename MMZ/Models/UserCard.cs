@@ -23,5 +23,5 @@ public partial class UserCard
 
     public DateTime UpdatedAt { get; set; }
 
-    public virtual User User { get; set; } = null!;
+    public virtual User? User { get; set; }
 }
