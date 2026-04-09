@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MMZ.Models;
 
-namespace CegautokAPI.Controllers
+namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize("admin")]
+    
     public class UserCardController : ControllerBase
     {
         private readonly MmzContext _context;
@@ -69,7 +69,7 @@ namespace CegautokAPI.Controllers
                 }
             }
         }
-
+        [Authorize]
         [HttpPost("NewUserCard")]
         public IActionResult PostUserCard(UserCard userCard)
         {
@@ -87,7 +87,7 @@ namespace CegautokAPI.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("ModifyUserCard")]
         public IActionResult PutUserCard(UserCard userCard)
         {
@@ -112,7 +112,7 @@ namespace CegautokAPI.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("DelUserCard")]
         public IActionResult DeleteUserCard(int id)
         {

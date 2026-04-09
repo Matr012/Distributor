@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 
-namespace CegautokAPI.Controllers
+namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize("admin")]
+    
     public class UserBillingController : ControllerBase
     {
         private readonly MmzContext _context;
@@ -69,7 +69,7 @@ namespace CegautokAPI.Controllers
                 }
             }
         }
-
+        [Authorize]
         [HttpPost("NewUserBilling")]
         public IActionResult PostUserBilling(UserBilling userBilling)
         {
@@ -87,7 +87,7 @@ namespace CegautokAPI.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("ModifyUserBilling")]
         public IActionResult PutUser(UserBilling userBilling)
         {
@@ -112,7 +112,7 @@ namespace CegautokAPI.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("DelUserBilling")]
         public IActionResult DeleteUserBilling(int id)
         {

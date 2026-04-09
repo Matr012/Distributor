@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using MMZ;
 using MMZ.Models;
 
-namespace CegautokAPI.Controllers
+namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
@@ -18,7 +18,7 @@ namespace CegautokAPI.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        [HttpPost("NewRegistry")]
         public async Task<IActionResult> PostReg(User user)
         {
             try
@@ -36,7 +36,7 @@ namespace CegautokAPI.Controllers
                 user.PasswordHash = Program.CreateSHA256(user.PasswordHash);
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
-                Program.SendEmail(user.Email, "Regisztráció megerősítése", $"http://localhost:5179/Registry?felhasznaloNev={user.Username}&email={user.Email}");
+                await Program.SendEmail(user.Email, "Regisztráció megerősítése", $"Az alábbi linkre kattintva: https://localhost:5179/Registry?felhasznaloNev={user.Username}&email={user.Email}, erősítse meg a regisztrációját.");
                 return Ok("Sikeres regisztráció, erősítse meg a megadott emailre kiküldött linkre kattintva.");
 
             }
@@ -45,7 +45,7 @@ namespace CegautokAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet]
+        [HttpGet("GetRegistry")]
         public async Task<IActionResult> ConfirmReg(string felhasznaloNev, string email)
         {
             try

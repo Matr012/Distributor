@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MMZ.Models;
 
-namespace CegautokAPI.Controllers
+namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize("admin")]
+    
     public class UserSubscriptionController : ControllerBase
     {
         private readonly MmzContext _context;
@@ -69,7 +69,7 @@ namespace CegautokAPI.Controllers
                 }
             }
         }
-
+        [Authorize]
         [HttpPost("NewUserSubscription")]
         public IActionResult PostUserSubscription(UserSubscription userSubscription)
         {
@@ -87,7 +87,7 @@ namespace CegautokAPI.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("ModifyUserSubscription")]
         public IActionResult PutUser(UserSubscription userSubscription)
         {
@@ -112,7 +112,7 @@ namespace CegautokAPI.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("DelUserSubscription")]
         public IActionResult DeleteUserSubscription(int id)
         {

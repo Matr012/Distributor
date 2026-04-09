@@ -7,17 +7,20 @@ namespace MMZ.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize("admin")]
+    
     public class AlbumController : ControllerBase
     {
+        private readonly MmzContext _context;
+        public AlbumController(MmzContext context)
+        {
+            _context = context;
+        }
         [HttpGet("Albums")]
         public IActionResult GetAlbums()
         {
-            using (var context = new MmzContext())
-            {
                 try
                 {
-                    List<Album> albums = context.Albums.ToList();
+                    List<Album> albums = _context.Albums.ToList();
                     return Ok(albums);
                 }
                 catch (Exception ex)
@@ -30,17 +33,16 @@ namespace MMZ.Controllers
                     };
                     return BadRequest(valasz);
                 }
-            }
+            
         }
 
         [HttpGet("AlbumById")]
         public IActionResult GetAlbumById(int id)
         {
-            using (var context = new MmzContext())
-            {
+            
                 try
                 {
-                    Album eredmeny = context.Albums.FirstOrDefault(ab => ab.Id == id);
+                    Album eredmeny = _context.Albums.FirstOrDefault(ab => ab.Id == id);
                     if (eredmeny != null)
                         return Ok(eredmeny);
                     else
@@ -62,38 +64,56 @@ namespace MMZ.Controllers
                     };
                     return BadRequest(valasz);
                 }
-            }
+            
         }
-
+        [Authorize]
         [HttpPost("NewAlbum")]
         public IActionResult PostAlbum(Album album)
         {
-            using (var context = new MmzContext())
             {
                 try
                 {
-                    context.Albums.Add(album);
-                    context.SaveChanges();
-                    return Ok("Sikeres rögzítés");
+                    var newAlbum = new Album
+                    {
+                        UserId = album.UserId,
+                        ArtistId = album.ArtistId,
+                        EanUpc = album.EanUpc,
+                        CodeRequest = album.CodeRequest,
+                        Title = album.Title,
+                        Subtitle = album.Subtitle,
+                        OriginalReleaseDate = album.OriginalReleaseDate,
+                        DigitalReleaseDate = album.DigitalReleaseDate,
+                        Redistribution = album.Redistribution,
+                        SpotifyArtistUrl = album.SpotifyArtistUrl,
+                        AppleArtistUrl = album.AppleArtistUrl,
+                        CoverPath = album.CoverPath,
+                        Status = album.Status,
+                        StyleId = album.StyleId > 0 ? album.StyleId : null,
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow,
+                    };
+                    _context.Albums.Add(newAlbum);
+                    _context.SaveChanges();
+                    return Ok(newAlbum.Id.ToString());
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest($"Hiba a rögzítés közben {ex.Message}");
+                    var msg = ex.InnerException?.Message ?? ex.Message;
+                    return BadRequest($"Hiba a rögzítés közben {msg}");
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("ModifyAlbum")]
         public IActionResult PutAlbum(Album album)
         {
-            using (var context = new MmzContext())
             {
                 try
                 {
-                    if (context.Albums.Contains(album))
+                    if (_context.Albums.Contains(album))
                     {
-                        context.Albums.Update(album);
-                        context.SaveChanges();
+                        _context.Albums.Update(album);
+                        _context.SaveChanges();
                         return Ok("Sikeres rögzítés");
                     }
                     else
@@ -107,18 +127,41 @@ namespace MMZ.Controllers
                 }
             }
         }
-
-        [HttpDelete("DelAlbum")]
-        public IActionResult DeleteAlbum(int id)
+        [Authorize(Roles = "Admin")]
+        [HttpPatch("UpdateStatus")]
+        public IActionResult UpdateStatus(int id, string status)
         {
-            using (var context = new MmzContext())
             {
                 try
                 {
-                    if (context.Albums.Select(ab => ab.Id).Contains(id))
+                    var album = _context.Albums.FirstOrDefault(a => a.Id == id);
+                    if (album == null)
+                        return NotFound("Nincs ilyen album!");
+
+                    album.Status = status;
+                    album.UpdatedAt = DateTime.UtcNow;
+                    _context.SaveChanges();
+                    return Ok("Státusz frissítve.");
+                }
+                catch (Exception ex)
+                {
+                    var msg = ex.InnerException?.Message ?? ex.Message;
+                    return BadRequest($"Hiba a státusz frissítés közben: {msg}");
+                }
+            }
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("DelAlbum")]
+        public IActionResult DeleteAlbum(int id)
+        {
+            {
+                try
+                {
+                    if (_context.Albums.Select(ab => ab.Id).Contains(id))
                     {
-                        context.Remove(new Album { Id = id });
-                        context.SaveChanges();
+                        _context.Remove(new Album { Id = id });
+                        _context.SaveChanges();
                         return Ok("Sikeres törlés");
                     }
                     else
