@@ -27,7 +27,7 @@ public partial class Track
 
     public string? Lyricists { get; set; }
 
-    public string? AudioPath { get; set; }
+    public byte[]? AudioPath { get; set; }
 
     public DateTime CreatedAt { get; set; }
 
@@ -35,7 +35,7 @@ public partial class Track
 
     public int? StyleId { get; set; }
 
-    public virtual Album Album { get; set; } = null!;
+    public virtual Album? Album { get; set; }
 
     public virtual MusicStyle? Style { get; set; }
 }

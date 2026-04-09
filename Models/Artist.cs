@@ -17,7 +17,7 @@ public partial class Artist
 
     public string? OtherSocials { get; set; }
 
-    public string? Avatar { get; set; }
+    public byte[]? Avatar { get; set; }
 
     public DateTime CreatedAt { get; set; }
 

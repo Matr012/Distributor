@@ -19,8 +19,6 @@ public partial class MmzContext : DbContext
 
     public virtual DbSet<Artist> Artists { get; set; }
 
-    public virtual DbSet<CardType> CardTypes { get; set; }
-
     public virtual DbSet<MusicStyle> MusicStyles { get; set; }
 
     public virtual DbSet<Privilege> Privileges { get; set; }
@@ -38,9 +36,12 @@ public partial class MmzContext : DbContext
     public virtual DbSet<UserSubscription> UserSubscriptions { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySQL("SERVER=localhost;PORT=3306;DATABASE=mmz;USER=root;PASSWORD=;");
-
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseMySQL("SERVER=localhost;PORT=3306;DATABASE=mmz;USER=root;PASSWORD=;");
+        }
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Album>(entity =>
@@ -75,8 +76,8 @@ public partial class MmzContext : DbContext
                 .HasColumnType("enum('igen','nem')")
                 .HasColumnName("code_request");
             entity.Property(e => e.CoverPath)
-                .HasMaxLength(512)
                 .HasDefaultValueSql("'NULL'")
+                .HasColumnType("blob")
                 .HasColumnName("cover_path");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("'current_timestamp()'")
@@ -130,7 +131,7 @@ public partial class MmzContext : DbContext
                 .HasConstraintName("albums_ibfk_2");
 
             entity.HasOne(d => d.MusicStyle).WithMany(p => p.Albums)
-                .HasForeignKey(d => d.Id)
+                .HasForeignKey(d => d.StyleId)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("fk_albums_style");
 
@@ -151,7 +152,7 @@ public partial class MmzContext : DbContext
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
             entity.Property(e => e.Avatar)
-                .HasMaxLength(512)
+                .HasColumnType("blob")
                 .HasDefaultValueSql("'NULL'")
                 .HasColumnName("avatar");
             entity.Property(e => e.CreatedAt)
@@ -182,21 +183,6 @@ public partial class MmzContext : DbContext
                 .HasColumnName("updated_at");
         });
 
-        modelBuilder.Entity<CardType>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("card_types");
-
-            entity.HasIndex(e => e.CardName, "name").IsUnique();
-
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
-            entity.Property(e => e.CardName)
-                .HasMaxLength(50)
-                .HasColumnName("card_name");
-        });
 
         modelBuilder.Entity<MusicStyle>(entity =>
         {
@@ -274,8 +260,8 @@ public partial class MmzContext : DbContext
                 .HasColumnType("int(11)")
                 .HasColumnName("album_id");
             entity.Property(e => e.AudioPath)
-                .HasMaxLength(512)
                 .HasDefaultValueSql("'NULL'")
+                .HasColumnType("mediumblob")
                 .HasColumnName("audio_path");
             entity.Property(e => e.Collaborators)
                 .HasDefaultValueSql("'NULL'")
@@ -377,8 +363,8 @@ public partial class MmzContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("phone");
             entity.Property(e => e.ProfilePic)
-                .HasMaxLength(512)
-                .HasDefaultValueSql("'''''''https://...default.jpg/'''")
+                .HasColumnType("blob")
+                .HasDefaultValueSql("NULL'")
                 .HasColumnName("profile_pic");
             entity.Property(e => e.UpdatedAt)
                 .ValueGeneratedOnAddOrUpdate()
@@ -439,10 +425,6 @@ public partial class MmzContext : DbContext
             entity.Property(e => e.UserId)
                 .HasColumnType("int(11)")
                 .HasColumnName("user_id");
-
-            entity.HasOne(d => d.User).WithMany(p => p.UserBillings)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("fk_users_billing_user");
         });
 
         modelBuilder.Entity<UserCard>(entity =>
@@ -451,7 +433,6 @@ public partial class MmzContext : DbContext
 
             entity.ToTable("user_card");
 
-            entity.HasIndex(e => e.CardTypeId, "idx_user_card_type");
 
             entity.HasIndex(e => e.UserId, "idx_user_card_user");
 
@@ -474,10 +455,6 @@ public partial class MmzContext : DbContext
                 .HasMaxLength(4)
                 .HasDefaultValueSql("'NULL'")
                 .HasColumnName("card_last4");
-            entity.Property(e => e.CardTypeId)
-                .HasDefaultValueSql("'NULL'")
-                .HasColumnType("int(11)")
-                .HasColumnName("card_type_id");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("'current_timestamp()'")
                 .HasColumnType("timestamp")
@@ -493,12 +470,6 @@ public partial class MmzContext : DbContext
             entity.Property(e => e.UserId)
                 .HasColumnType("int(11)")
                 .HasColumnName("user_id");  
-
-            entity.HasOne(d => d.CardType).WithMany(p => p.UserCards)
-                .HasForeignKey(d => d.CardTypeId)
-                .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("fk_user_cards_type");
-
             entity.HasOne(d => d.User).WithMany(p => p.UserCards)
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("fk_user_cards_user");
@@ -543,7 +514,6 @@ public partial class MmzContext : DbContext
             entity.Property(e => e.UserId)
                 .HasColumnType("int(11)")
                 .HasColumnName("user_id");
-
             entity.HasOne(d => d.Plan).WithMany(p => p.UserSubscriptions)
                 .HasForeignKey(d => d.PlanId)
                 .HasConstraintName("user_subscriptions_ibfk_1");

@@ -33,7 +33,7 @@ public partial class Album
 
     public string? AppleArtistUrl { get; set; }
 
-    public string? CoverPath { get; set; }
+    public byte[]? CoverPath { get; set; }
 
     public string? Status { get; set; }
 
@@ -45,7 +45,7 @@ public partial class Album
 
     public virtual ICollection<Track> Tracks { get; set; } = new List<Track>();
 
-    public virtual User User { get; set; } = null!;
+    public virtual User? User { get; set; }
     public virtual MusicStyle? MusicStyle { get; set; }
-    public int StyleId { get; internal set; }
+    public int? StyleId { get; internal set; }
 }
