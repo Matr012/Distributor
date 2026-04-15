@@ -36,7 +36,7 @@ namespace MMZ.Controllers
                 user.PasswordHash = Program.CreateSHA256(user.PasswordHash);
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
-                await Program.SendEmail(user.Email, "Regisztráció megerősítése", $"Az alábbi linkre kattintva: https://localhost:5179/Registry?felhasznaloNev={user.Username}&email={user.Email}, erősítse meg a regisztrációját.");
+                await Program.SendEmail(user.Email, "Regisztráció megerősítése", $"Köszönjük regisztrációját! Fiókja aktiválásához és az oldal igénybevételéhez kérjük, kattintson az alábbi megerősítő linkre: https://localhost:5179/Registry?felhasznaloNev={user.Username}&email={user.Email}");
                 return Ok("Sikeres regisztráció, erősítse meg a megadott emailre kiküldött linkre kattintva.");
 
             }
