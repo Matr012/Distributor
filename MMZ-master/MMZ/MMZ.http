@@ -1,0 +1,6 @@
+@MMZ_HostAddress = http://localhost:5179
+
+GET {{MMZ_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
